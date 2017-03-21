@@ -38,7 +38,18 @@ app.put('/update/:id', (req, res) => {
     })
 })
 
-
+app.delete('/delete/:id', (req, res) => {
+  Card.destroy(
+    { where: {
+      id: req.params.id }
+    })
+    .then(card => {
+      res.send('successfully deleted')
+    })
+    .catch(() => {
+      res.send('error')
+    })
+})
 
 app.listen(PORT, function () {
   console.log(`Listening on ${PORT}`)
