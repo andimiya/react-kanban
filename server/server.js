@@ -21,6 +21,25 @@ app.post('/new', (req, res) => {
     })
 })
 
+app.put('/update/:id', (req, res) => {
+  Card.update({
+    title: req.body.title,
+    priority: req.body.priority,
+    status: req.body.status
+  },
+    { where: {
+      id: req.params.id }
+    })
+    .then(card => {
+      res.send('updated successfully')
+    })
+    .catch(() => {
+      res.send('error')
+    })
+})
+
+
+
 app.listen(PORT, function () {
   console.log(`Listening on ${PORT}`)
 })
