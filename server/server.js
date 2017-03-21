@@ -1,5 +1,6 @@
 const express = require('express')
 const PORT = process.env.PORT || 3000
+const app = express()
 const bp = require('body-parser')
 
 app.use(bp.urlencoded({ extended: true }))
