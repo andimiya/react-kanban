@@ -7,6 +7,16 @@ const { Card } = db
 
 app.use(bp.urlencoded({ extended: true }))
 
+app.get('/api', (req, res) => {
+  Card.findAll()
+  .then(cards => {
+    res.json({ cards })
+  })
+  .catch(() => {
+    res.send('error')
+  })
+})
+
 app.post('/new', (req, res) => {
   Card.create({
     title: req.body.title,
