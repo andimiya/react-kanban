@@ -17,7 +17,7 @@ class KanbanContainer extends Component {
           const reqListener = () =>{
             console.log('oreq: ', oReq.response);
             this.setState(
-              {[`Cards`]: JSON.parse(oReq.response)}
+              {[`cards`]: JSON.parse(oReq.response)}
             );
           };
           oReq.addEventListener("load", reqListener);
