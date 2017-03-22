@@ -17,7 +17,12 @@ class KanbanContainer extends Component {
     function reqListener () {
       var data = JSON.parse(this.responseText);
       console.log(data, 'data');
-      that.setState({
+      console.log(this, 'this render');
+      console.log(that, 'that render');
+      console.log(that.responseText, 'that responseText');
+      console.log(this.responseText, 'this responseText');
+
+      this.setState({
         cards: data
       })
     }
@@ -29,14 +34,16 @@ class KanbanContainer extends Component {
   }
 
   render() {
-    console.log(this.state.cards, 'state cards')
+
+    console.log(this.state.cards, 'state')
+    console.log(this, 'this render')
     return (
       <KanbanColumn
         cards={this.state.cards
           .filter((card) => {
-            return card.status === 'done'
-          }
-        )}
+            return card.status
+          })
+        }
       />
     )
   }
