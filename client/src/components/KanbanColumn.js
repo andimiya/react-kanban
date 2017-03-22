@@ -2,14 +2,21 @@ import React from 'react'
 import KanbanCard from './KanbanCard.js'
 import '../index.css'
 
-const KanbanColumn =
-  <KanbanCard
-    title={this.title
-      .map((card) => {
-        return card.title
+const KanbanColumn = (props) => {
+  console.log(props, 'props')
+  return(
+    <div>
+      {props.cards
+        .map((card) => {
+          return (
+            <KanbanCard
+            title={card.title}
+            />
+          )
+        })
       }
-    )}
-  />
-console.log(KanbanColumn)
+    </div>
+  )
+}
 
 export default KanbanColumn
