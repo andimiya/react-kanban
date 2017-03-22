@@ -11,9 +11,15 @@ class KanbanContainer extends Component {
   }
 
   componentDidMount(){
+
+    var that = this;
+
     function reqListener () {
       var data = JSON.parse(this.responseText);
       console.log(data, 'data');
+      that.setState({
+        cards: data
+      })
     }
 
     var oReq = new XMLHttpRequest();
@@ -23,10 +29,11 @@ class KanbanContainer extends Component {
   }
 
   render() {
+    console.log(this.state.cards, 'state cards')
     return (
       <KanbanColumn
         cards={this.state.cards
-          .filter((card, index) => {
+          .filter((card) => {
             return card.status === 'done'
           }
         )}
@@ -35,4 +42,4 @@ class KanbanContainer extends Component {
   }
 }
 
-export default KanbanContainer
+export default KanbanContainer;
