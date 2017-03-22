@@ -24,16 +24,14 @@ class KanbanContainer extends Component {
 
   render() {
     return (
-    <KanbanColumn
-      cards={this.state.cards
-        .filter((card) => {
-          return card.status === 'done'
-        }
-      )}
-    />
-
-
-  )
+      <KanbanColumn
+        cards={this.state.cards
+          .filter((card) => {
+            return card.status === 'done'
+          }
+        )}
+      />
+    )
   }
 }
 
