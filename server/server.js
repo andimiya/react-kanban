@@ -1,11 +1,17 @@
 const express = require('express')
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 8080
 const app = express()
 const bp = require('body-parser')
 const db = require('./models')
 const { Card } = db
 
 app.use(bp.urlencoded({ extended: true }))
+
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', "*")
+  res.header('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept")
+  next()
+})
 
 app.get('/api', (req, res) => {
   Card.findAll()
