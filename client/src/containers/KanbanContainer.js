@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-// import Kanban from '../components/Kanban.js';
+import KanbanColumn from '../components/KanbanColumn.js';
 import '../index.css';
 
 class KanbanContainer extends Component {
@@ -24,11 +24,15 @@ class KanbanContainer extends Component {
 
   render() {
     return (
-    <div>
-      <h1>Test</h1>
+    <KanbanColumn
+      cards={this.state.cards
+        .filter((card) => {
+          return card.status === 'done'
+        }
+      )}
+    />
 
 
-  </div>
   )
   }
 }
