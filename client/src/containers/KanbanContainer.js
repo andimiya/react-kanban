@@ -13,16 +13,16 @@ class KanbanContainer extends Component {
 
       // ['cards'].map((cards) =>{
       //   return (() =>{
-          let oReq = new XMLHttpRequest();
-          const reqListener = () =>{
-            console.log('oreq: ', oReq.response);
-            this.setState(
-              {[`cards`]: JSON.parse(oReq.response)}
-            );
-          };
-          oReq.addEventListener("load", reqListener);
-          oReq.open("GET", `http://localhost:8080/api`);
-          oReq.send();
+    let oReq = new XMLHttpRequest();
+    const reqListener = () =>{
+      console.log('oreq: ', oReq.response);
+      this.setState(
+        {[`cards`]: JSON.parse(oReq.response)}
+      );
+    };
+    oReq.addEventListener("load", reqListener);
+    oReq.open("GET", `http://localhost:8080/api`);
+    oReq.send();
         // })
         // ();
       // });
@@ -54,11 +54,14 @@ class KanbanContainer extends Component {
 
   render() {
 
+    var array = Object.keys(this.state.cards).map(key => this.state.cards[key]);
+    console.log(array, 'array');
     console.log(this.state.cards, 'state')
     console.log(this, 'this render')
+    this.state.cards = [1,2,3,4]
     return (
       <KanbanColumn
-        cards={this.state.cards
+        cards={array
           .filter((card) => {
             return (
               card.status === 'done'
