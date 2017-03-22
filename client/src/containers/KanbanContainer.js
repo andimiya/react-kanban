@@ -60,7 +60,9 @@ class KanbanContainer extends Component {
       <KanbanColumn
         cards={this.state.cards
           .filter((card) => {
-            return card.status === 'done'
+            return (
+              card.status === 'done'
+            )
           })
         }
       />
