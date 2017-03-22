@@ -11,12 +11,15 @@ class KanbanContainer extends Component {
   }
 
   componentDidMount(){
-    fetch(`/api`)
-      .then(result => {
-        // result.json()
-        console.log(result);
-      })
-      // .then(items => this.setState({cards}))
+    function reqListener () {
+      var data = JSON.parse(this.responseText);
+      console.log(data, 'data');
+    }
+
+    var oReq = new XMLHttpRequest();
+    oReq.addEventListener('load', reqListener);
+    oReq.open('GET', 'http://localhost:8080/api');
+    oReq.send();
   }
 
   render() {
