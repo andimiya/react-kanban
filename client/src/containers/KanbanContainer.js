@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 // import KanbanColumn from '../components/KanbanColumn.js';
 import KanbanCard from '../components/KanbanCard.js';
+import NewTask from '../components/NewTask.js';
 import '../index.css';
 
 class KanbanContainer extends Component {
@@ -9,6 +10,14 @@ class KanbanContainer extends Component {
     this.state = {
       cards: []
     };
+    this.addTask = this.addTask.bind(this);
+  }
+
+  addTask(obj) {
+    console.log(obj, 'obj');
+    this.setState({
+      cards: [obj]
+    })
   }
 
   componentDidMount(){
@@ -28,6 +37,10 @@ class KanbanContainer extends Component {
     return (
 
     <div>
+      <NewTask
+        addTask={this.addTask}/>
+
+
     {
     this.state.cards
     .filter(card => {

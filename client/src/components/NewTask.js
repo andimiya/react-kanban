@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
-import '../index.css'
+import React, {Component} from 'react';
+import '../index.css';
 
 class NewTask extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       title: "",
       priority: "",
@@ -23,12 +23,18 @@ class NewTask extends Component {
       priority: this.state.priority,
       status: this.state.status
     })
-    console.log('handle submit triggered')
     this.setState({
       title: "",
       priority: "",
-      status: this.state.status
+      status: ""
     })
+
+    console.log(this.props, 'props');
+    this.props.addTask({
+      title: this.state.title,
+      priority: this.state.priority,
+      status: this.state.status
+    });
   }
 
   handleChangeTitle(event){
@@ -51,11 +57,10 @@ class NewTask extends Component {
 
   addTask(card) {
 
-
     var oReq = new XMLHttpRequest();
     oReq.open('POST', 'http://localhost:8080/new');
     oReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    oReq.send(`title=${card.title}&priority`);  //Look this up - syntax for XHR request
+    oReq.send(`title=${card.title}&priority=${card.priority}&status=${card.status}`);  //Look this up - syntax for XHR request
   }
 
   render() {
@@ -64,7 +69,8 @@ class NewTask extends Component {
           <input type="text" placeholder="title" value={this.state.title} onChange={this.handleChangeTitle}  />
           <input type="text" placeholder="priority" value={this.state.priority} onChange={this.handleChangePriority} />
           <input type="text" placeholder="status" value={this.state.status} onChange={this.handleChangeStatus} />
-        <input type="submit" value="Add Task" onSubmit={this.handleSubmit} />
+        <input type="submit" value="Add Task" />
+
       </form>
     )
   }
