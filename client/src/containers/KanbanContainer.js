@@ -44,25 +44,24 @@ class KanbanContainer extends Component {
       )
     })
     }
+
+    {
+    this.state.cards
+    .filter(card => {
+      return card.status === 'done'
+    })
+    .map (card => {
+      return (
+        <KanbanCard
+          key={card.id}
+          title={card.title}
+          priority={card.priority}
+          status={card.status}
+        />
+      )
+    })
+    }
     </div>
-
-    // {
-    // this.state.cards
-    // .filter(card => {
-    //   return card.status === 'in progress'
-    // })
-    // .map (card => {
-    //   return (
-    //     <KanbanColumn
-    //       key={card.id}
-    //       title={card.title}
-    //       priority={card.priority}
-    //       status={card.status}
-    //     />
-    //   )
-    // })
-    // }
-
     )
   }
 }
