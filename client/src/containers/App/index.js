@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../../components/Header.js'
 import KanbanContainer from '../KanbanContainer.js'
+import KanbanColumn from '../../components/KanbanColumn.js'
 import './App.css'
 
 class App extends Component {
@@ -9,6 +10,7 @@ class App extends Component {
       <div>
       <Header />
       <KanbanContainer />
+      <KanbanColumn />
       </div>
     );
   }

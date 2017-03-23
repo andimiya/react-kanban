@@ -13,7 +13,6 @@ class KanbanContainer extends Component {
   componentDidMount(){
     let that = this;
     function reqListener() {
-    console.log(this.responseText, 'responseText');
     that.setState({
       cards: JSON.parse(this.responseText)
     })
@@ -29,22 +28,39 @@ class KanbanContainer extends Component {
 
     <div>
     {
-    this.state.cards.map(card => {
-      console.log(this.state.cards, 'state')
+    this.state.cards
+    .filter(card => {
+      return card.status === 'in progress'
+    })
+    .map (card => {
       return (
         <KanbanColumn
           key={card.id}
+          title={card.title}
+          priority={card.priority}
+          status={card.status}
+        />
+      )
+    })
+    }
+    {
+    this.state.cards
+    .filter(card => {
+      return card.status === 'in progress'
+    })
+    .map (card => {
+      return (
+        <KanbanColumn
+          key={card.id}
+          title={card.title}
+          priority={card.priority}
           status={card.status}
         />
       )
     })
     }
     </div>
-    // console.log(array, 'array');
-    // console.log(this.state.cards, 'state')
-    // console.log(this, 'this render')
-    // return (
-    //   console.log(card, 'card');
+
     )
   }
 }

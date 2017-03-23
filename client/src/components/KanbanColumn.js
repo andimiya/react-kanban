@@ -6,8 +6,9 @@ const KanbanColumn = (props) => {
   console.log(props, 'props')
   return(
     <div>
-      {props.cards
-        .map((card) => {
+      {
+        props
+        .map(card => {
           return (
             <KanbanCard
             title={card.title}
