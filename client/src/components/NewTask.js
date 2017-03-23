@@ -5,20 +5,28 @@ class NewTask extends Component {
   constructor() {
     super()
     this.state = {
-      cards: []
+      title: "",
+      priority: "",
+      status: ""
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeTitle = this.handleChangeTitle.bind(this);
-    this.handleChangeStatus = this.handleChangeStatus.bind(this);
+    this.handleChangePriority = this.handleChangePriority.bind(this);
     this.handleChangeStatus = this.handleChangeStatus.bind(this);
   }
 
+  // trigger addTask, reset state to ""
   handleSubmit(event) {
     event.preventDefault();
-    console.log('handle submit triggered')
-    this.setState({
+    this.addTask({
       title: this.state.title,
       priority: this.state.priority,
+      status: this.state.status
+    })
+    console.log('handle submit triggered')
+    this.setState({
+      title: "",
+      priority: "",
       status: this.state.status
     })
   }
@@ -42,24 +50,20 @@ class NewTask extends Component {
   }
 
   addTask(card) {
-    var Data = {
-      title: this.state.title,
-      priority: this.state.priority,
-      status: this.state.status
-    };
+
 
     var oReq = new XMLHttpRequest();
     oReq.open('POST', 'http://localhost:8080/new');
-    console.log(Data, 'data');
-    oReq.send(this.addTask);
+    oReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    oReq.send(`title=${card.title}&priority`);  //Look this up - syntax for XHR request
   }
 
   render() {
     return (
       <form action="http://localhost:8080/new" method="post" onSubmit={this.handleSubmit}>
           <input type="text" placeholder="title" value={this.state.title} onChange={this.handleChangeTitle}  />
-          <input type="text" placeholder="priority" value={this.state.priority} onChange={this.state.priority} />
-          <input type="text" placeholder="status" value={this.state.status} onChange={this.state.status} />
+          <input type="text" placeholder="priority" value={this.state.priority} onChange={this.handleChangePriority} />
+          <input type="text" placeholder="status" value={this.state.status} onChange={this.handleChangeStatus} />
         <input type="submit" value="Add Task" onSubmit={this.handleSubmit} />
       </form>
     )
