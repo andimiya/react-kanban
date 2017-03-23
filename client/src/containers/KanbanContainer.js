@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import KanbanColumn from '../components/KanbanColumn.js';
+// import KanbanColumn from '../components/KanbanColumn.js';
+import KanbanCard from '../components/KanbanCard.js';
 import '../index.css';
 
 class KanbanContainer extends Component {
@@ -34,23 +35,7 @@ class KanbanContainer extends Component {
     })
     .map (card => {
       return (
-        <KanbanColumn
-          key={card.id}
-          title={card.title}
-          priority={card.priority}
-          status={card.status}
-        />
-      )
-    })
-    }
-    {
-    this.state.cards
-    .filter(card => {
-      return card.status === 'in progress'
-    })
-    .map (card => {
-      return (
-        <KanbanColumn
+        <KanbanCard
           key={card.id}
           title={card.title}
           priority={card.priority}
@@ -60,6 +45,23 @@ class KanbanContainer extends Component {
     })
     }
     </div>
+
+    // {
+    // this.state.cards
+    // .filter(card => {
+    //   return card.status === 'in progress'
+    // })
+    // .map (card => {
+    //   return (
+    //     <KanbanColumn
+    //       key={card.id}
+    //       title={card.title}
+    //       priority={card.priority}
+    //       status={card.status}
+    //     />
+    //   )
+    // })
+    // }
 
     )
   }
