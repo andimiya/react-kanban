@@ -18,17 +18,25 @@ class NewTask extends Component {
   }
 
   handleSubmit(event) {
-    alert(`Submitted ${this.state.title}`);
+    alert(`Submitted`);
     event.preventDefault();
+    this.addTask({
+      title: this.state.title,
+      priority: this.state.priority,
+      status: this.state.status
+    })
   }
 
+  addTask(card) {
+    var formData = {
+      title: this.state.title,
+      priority: this.state.priority,
+      status: this.state.status
+    };
+
     var oReq = new XMLHttpRequest();
-    oReq.addEventListener('load', reqListener);
     oReq.open('POST', 'http://localhost:8080/new');
-    oReq.send();
-
-   }
-
+    oReq.send(formData);
   }
 
   render() {
