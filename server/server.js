@@ -16,7 +16,7 @@ app.use(function(req, res, next) {
 app.get('/api', (req, res) => {
   Card.findAll()
   .then(cards => {
-    res.json({ cards })
+    res.json( cards )
   })
   .catch(() => {
     res.send('error')
