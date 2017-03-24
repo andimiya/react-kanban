@@ -53,6 +53,7 @@ class NewTask extends Component {
     var oReq = new XMLHttpRequest();
     oReq.open('POST', 'http://localhost:8080/new');
     oReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // oReq.addEventListener('load', reqListener);
     oReq.send(`title=${card.title}&priority=${card.priority}&status=${card.status}`);  //Look this up - syntax for XHR request
   }
 
