@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import '../index.css';
 
+// import { connect } from 'react-redux';
+// import addTask from '../actions';
+
 class NewTask extends Component {
   constructor(props) {
     super(props)
@@ -69,5 +72,25 @@ class NewTask extends Component {
     )
   }
 }
+// //
+// const mapStateToProps = (state) => {
+//   return {
+//     tasks: state.tasks
+//   }
+// };
+
+// function that takes the dispatch property as an input
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     onAddTask: (title, priority, status) => {
+//       dispatch(addTask(title, priority, status));
+//     }
+//   }
+// };
+//
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(App);
 
 export default NewTask
