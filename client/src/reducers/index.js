@@ -4,7 +4,7 @@ const initialState = {
   cards: []
 };
 
-console.log(store.getState());
+// console.log(store.getState());
 
 function cards(state = initialState, action) {
   switch(action.type) {

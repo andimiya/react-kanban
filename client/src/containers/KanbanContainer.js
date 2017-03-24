@@ -4,8 +4,12 @@ import KanbanCard from '../components/KanbanCard.js';
 import NewTask from '../components/NewTask.js';
 import '../index.css';
 
+import { createStore } from 'redux';
 import { connect } from 'react-redux';
 import addTask from '../actions';
+import cards from '../reducers';
+
+let store = createStore(cards)
 
 class KanbanContainer extends Component {
   constructor(props){
@@ -41,7 +45,9 @@ class KanbanContainer extends Component {
       return card.status === 'in progress'
     })
     .map (card => {
+      console.log(store.dispatch(addTask('sweep', 'now', 'done')));
       return (
+
         <KanbanCard
           key={card.id}
           title={card.title}
