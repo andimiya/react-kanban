@@ -6,6 +6,7 @@ const db = require('./models')
 const { Card } = db
 
 app.use(bp.urlencoded({ extended: true }))
+app.use(bp.json())
 
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', "*")
