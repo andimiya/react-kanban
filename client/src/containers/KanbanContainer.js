@@ -34,6 +34,8 @@ class KanbanContainer extends Component {
    oReq.send();
   }
 
+// action creators or action on props
+
   render() {
     return (
 
@@ -45,7 +47,8 @@ class KanbanContainer extends Component {
       return card.status === 'in progress'
     })
     .map (card => {
-      console.log(store.dispatch(addTask('sweep', 'now', 'done')));
+
+
       return (
 
         <KanbanCard

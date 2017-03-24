@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import '../index.css';
 
-// import { connect } from 'react-redux';
-// import addTask from '../actions';
+import { connect } from 'react-redux';
+import addTask from '../actions';
 
 class NewTask extends Component {
   constructor(props) {
@@ -55,12 +55,16 @@ class NewTask extends Component {
 
     var oReq = new XMLHttpRequest();
     oReq.open('POST', 'http://localhost:8080/new');
-    oReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    oReq.setRequestHeader("Content-Type", "application/json");
     // oReq.addEventListener('load', reqListener);
-    oReq.send(`title=${card.title}&priority=${card.priority}&status=${card.status}`);  //Look this up - syntax for XHR request
+    oReq.send(JSON.stringify(card))
+    console.log(card, 'card');
+    //
+    // oReq.send(`title=${card.title}&priority=${card.priority}&status=${card.status}`);  //Look this up - syntax for XHR request
   }
 
   render() {
+
     return (
       <form action="http://localhost:8080/new" method="post" onSubmit={this.handleSubmit}>
           <input type="text" placeholder="title" value={this.state.title} onChange={this.handleChangeTitle}  />
@@ -72,25 +76,22 @@ class NewTask extends Component {
     )
   }
 }
-// //
-// const mapStateToProps = (state) => {
-//   return {
-//     tasks: state.tasks
-//   }
-// };
-
-// function that takes the dispatch property as an input
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     onAddTask: (title, priority, status) => {
-//       dispatch(addTask(title, priority, status));
-//     }
-//   }
-// };
 //
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(App);
+const mapStateToProps = (state) => {
+  return {
+    cards: state.cards
+  }
+};
 
-export default NewTask
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAddTask: (title, priority, status) => {
+      dispatch(addTask(title, priority, status));
+    }
+  }
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NewTask);
