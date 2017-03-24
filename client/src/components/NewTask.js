@@ -28,13 +28,6 @@ class NewTask extends Component {
       priority: "",
       status: ""
     })
-
-    console.log(this.props, 'props');
-    this.props.addTask({
-      title: this.state.title,
-      priority: this.state.priority,
-      status: this.state.status
-    });
   }
 
   handleChangeTitle(event){

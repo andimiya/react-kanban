@@ -10,14 +10,6 @@ class KanbanContainer extends Component {
     this.state = {
       cards: []
     };
-    this.addTask = this.addTask.bind(this);
-  }
-
-  addTask(obj) {
-    console.log(obj, 'obj');
-    this.setState({
-      cards: [obj]
-    })
   }
 
   componentDidMount(){
@@ -37,10 +29,7 @@ class KanbanContainer extends Component {
     return (
 
     <div>
-      <NewTask
-        addTask={this.addTask}/>
-
-
+      <NewTask />
     {
     this.state.cards
     .filter(card => {
@@ -57,7 +46,6 @@ class KanbanContainer extends Component {
       )
     })
     }
-
     {
     this.state.cards
     .filter(card => {
