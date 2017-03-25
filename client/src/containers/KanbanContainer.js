@@ -7,8 +7,6 @@ import '../index.css';
 import { connect } from 'react-redux';
 import addTask from '../actions';
 
-let store = createStore(cards)
-
 class KanbanContainer extends Component {
   constructor(props){
     super(props);

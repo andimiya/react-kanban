@@ -6,10 +6,7 @@ const initialState = {
 
 // console.log(store.getState());
 
-const newTaskReducer = (state = initialState, action) => {
-
-  let newState = state;
-
+function newTaskReducer(state = initialState, action) {
   switch(action.type) {
     case ADD_TASK:
       return Object.assign({}, state, {
@@ -23,9 +20,9 @@ const newTaskReducer = (state = initialState, action) => {
         ]
       })
     default:
-      newState;
+      return state;
   }
-  return newState;
+  return state;
 }
 
 export default newTaskReducer;

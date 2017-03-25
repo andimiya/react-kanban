@@ -5,9 +5,9 @@ import './index.css';
 
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import cards from './reducers';
+import newTaskReducer from './reducers';
 
-let store = createStore(cards)
+let store = createStore(newTaskReducer)
 
 ReactDOM.render(
   <Provider store={store}>
