@@ -10,35 +10,40 @@ import addTask from '../actions';
 class KanbanContainer extends Component {
   constructor(){
     super();
-    this.state = {
-      cards: []
-    };
+    this.onServerData = this.onServerData.bind(this);
   }
+
+  onServerData(data) {
+    const { dispatch } = this.props;
+    const parsedServerData = JSON.parse(data.currentTarget.response);
+    console.log(parsedServerData[0].status, 'data');
+    // console.log(dispatch());
+    this.props.onAddTask(parsedServerData[0].title, parsedServerData[0].priority, parsedServerData[0].status);
+    console.log(this.props, 'state');
+  };
 
   componentDidMount(){
-    // console.log(store.getState());
-    let that = this;
-    function reqListener() {
-    that.setState({
-      cards: JSON.parse(this.responseText)
-    })
+    this.loadDatafromServer();
    }
 
-   var oReq = new XMLHttpRequest();
-   oReq.addEventListener('load', reqListener);
-   oReq.open('GET', 'http://localhost:8080/api');
-   oReq.send();
-  }
+   loadDatafromServer(){
+     var oReq = new XMLHttpRequest();
+     oReq.addEventListener('load', this.onServerData);
+     oReq.open('GET', 'http://localhost:8080/api');
+     oReq.send();
+   }
 
 // action creators or action on props
 
   render() {
+    console.log(this.props.cards, 'return state');
+
     return (
 
     <div>
       <NewTask />
     {
-    this.state.cards
+    this.props.cards
     .filter(card => {
       return card.status === 'in progress'
     })
@@ -46,18 +51,17 @@ class KanbanContainer extends Component {
 
 
       return (
-
         <KanbanCard
-          key={card.id}
-          title={card.title}
-          priority={card.priority}
-          status={card.status}
+          key={this.props.cards.id}
+          title={this.props.cards.title}
+          priority={this.props.cards.priority}
+          status={this.props.cards.status}
         />
       )
     })
     }
     {
-    this.state.cards
+    this.props.cards
     .filter(card => {
       return card.status === 'done'
     })
