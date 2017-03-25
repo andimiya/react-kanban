@@ -12,7 +12,8 @@ function cards(state = initialState, action) {
           ...state.cards,
           {
             title: action.title,
-            priority: action.prioriy
+            priority: action.priority,
+            status: action.status,
           }
         ]
       })
