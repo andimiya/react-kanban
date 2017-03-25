@@ -4,10 +4,8 @@ import KanbanCard from '../components/KanbanCard.js';
 import NewTask from '../components/NewTask.js';
 import '../index.css';
 
-import { createStore } from 'redux';
 import { connect } from 'react-redux';
 import addTask from '../actions';
-import cards from '../reducers';
 
 let store = createStore(cards)
 
