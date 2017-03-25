@@ -1,28 +1,22 @@
 import { ADD_TASK } from '../actions';
 
-const initialState = {
-  cards: []
-};
+const initialState = cards();
 
-// console.log(store.getState());
+const newTaskReducer = (state = initialState, action) => {
 
-function newTaskReducer(state = initialState, action) {
+  let newState = state;
+
   switch(action.type) {
-    case ADD_TASK:
-      return Object.assign({}, state, {
-        cards: [
-          ...state.cards,
-          {
-            title: action.title,
-            priority: action.priority,
-            status: action.status
-          }
-        ]
-      })
+    case 'REMOVE_ITEM':
+      return state.delete(action.index);
+
+    case 'SET_ITEMS':
+      return cards(action.data);
+
     default:
-      return state;
+      newState;
   }
-  return state;
-}
+  return newState;
+};
 
 export default newTaskReducer;

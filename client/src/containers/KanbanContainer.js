@@ -8,8 +8,8 @@ import { connect } from 'react-redux';
 import addTask from '../actions';
 
 class KanbanContainer extends Component {
-  constructor(props){
-    super(props);
+  constructor(){
+    super();
     this.state = {
       cards: []
     };
