@@ -16,9 +16,9 @@ class KanbanContainer extends Component {
   onServerData(data) {
     const { dispatch } = this.props;
     const parsedServerData = JSON.parse(data.currentTarget.response);
-    console.log(parsedServerData[0].status, 'data');
-    // console.log(dispatch());
-    this.props.onAddTask(parsedServerData[0].title, parsedServerData[0].priority, parsedServerData[0].status);
+    parsedServerData.forEach(card => {
+      this.props.onAddTask(card.title, card.priority, card.status);
+    });
     console.log(this.props, 'state');
   };
 
@@ -36,8 +36,6 @@ class KanbanContainer extends Component {
 // action creators or action on props
 
   render() {
-    console.log(this.props.cards, 'return state');
-
     return (
 
     <div>
