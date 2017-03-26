@@ -34,10 +34,12 @@ class KanbanContainer extends Component {
 
   render() {
     return (
-    <div className="board-container">
-      <div className="new-task">
+    <div>
+    <div className="new-task">
       <NewTask />
-      </div>
+    </div>
+
+    <div className="board-container">
     <div className="to-do">
     {
     this.props.cards
@@ -91,6 +93,7 @@ class KanbanContainer extends Component {
       )
     })
     }
+    </div>
     </div>
     </div>
     )

@@ -13,13 +13,13 @@ body {
   color: white;
 }
 
-#id {
+.board-container {
   border: 10px solid purple;
   display: flex;
   flex-flow: row wrap;
 }
 
-.To-Do {
+.new-task {
   border: 10px solid blue;
 }
 
