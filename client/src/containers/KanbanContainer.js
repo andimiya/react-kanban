@@ -47,13 +47,14 @@ class KanbanContainer extends Component {
     })
     .map (card => {
 
+console.log(card, 'props card');
 
       return (
         <KanbanCard
-          key={this.props.cards.id}
-          title={this.props.cards.title}
-          priority={this.props.cards.priority}
-          status={this.props.cards.status}
+          key={card.id}
+          title={card.title}
+          priority={card.priority}
+          status={card.status}
         />
       )
     })
