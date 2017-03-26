@@ -14,7 +14,6 @@ class KanbanContainer extends Component {
   }
 
   onServerData(data) {
-    const { dispatch } = this.props;
     const parsedServerData = JSON.parse(data.currentTarget.response);
     parsedServerData.forEach(card => {
       this.props.onAddTask(card.title, card.priority, card.status);
