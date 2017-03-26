@@ -17,11 +17,7 @@ class NewTask extends Component {
   // trigger addTask, reset state to ""
   handleSubmit(event) {
     event.preventDefault();
-    this.addTask({
-      title: this.state.title,
-      priority: this.state.priority,
-      status: this.state.status
-    })
+    this.props.onAddTask(this.state.title, this.state.priority, this.state.status);
   }
 
   handleChangeTitle(event){
