@@ -19,7 +19,6 @@ class KanbanContainer extends Component {
     parsedServerData.forEach(card => {
       this.props.onAddTask(card.title, card.priority, card.status);
     });
-    console.log(this.props, 'state');
   };
 
   componentDidMount(){
@@ -62,8 +61,6 @@ class KanbanContainer extends Component {
       return card.status === 'In-Progress'
     })
     .map (card => {
-
-console.log(card, 'props card');
 
       return (
         <KanbanCard
