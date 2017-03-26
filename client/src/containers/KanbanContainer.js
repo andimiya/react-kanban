@@ -43,7 +43,23 @@ class KanbanContainer extends Component {
     {
     this.props.cards
     .filter(card => {
-      return card.status === 'in progress'
+      return card.status === 'To-Do'
+    })
+    .map (card => {
+      return (
+        <KanbanCard
+          key={card.id}
+          title={card.title}
+          priority={card.priority}
+          status={card.status}
+        />
+      )
+    })
+    }
+    {
+    this.props.cards
+    .filter(card => {
+      return card.status === 'In-Progress'
     })
     .map (card => {
 
@@ -62,7 +78,7 @@ console.log(card, 'props card');
     {
     this.props.cards
     .filter(card => {
-      return card.status === 'done'
+      return card.status === 'Done'
     })
     .map (card => {
       return (
