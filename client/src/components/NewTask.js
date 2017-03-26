@@ -26,10 +26,18 @@ class NewTask extends Component {
       priority: this.state.priority,
       status: this.state.status
     })
+<<<<<<< HEAD
     this.setState({
       title: "",
       priority: "",
       status: ""
+=======
+    console.log('handle submit triggered')
+    this.setState({
+      title: "",
+      priority: "",
+      status: this.state.status
+>>>>>>> 3dc41f3ccbd0b6eee05289ca7159fc65a97a1273
     })
   }
 
@@ -52,6 +60,7 @@ class NewTask extends Component {
   }
 
   addTask(card) {
+<<<<<<< HEAD
 
     var oReq = new XMLHttpRequest();
     oReq.open('POST', 'http://localhost:8080/new');
@@ -61,6 +70,14 @@ class NewTask extends Component {
     console.log(card, 'card');
     //
     // oReq.send(`title=${card.title}&priority=${card.priority}&status=${card.status}`);  //Look this up - syntax for XHR request
+=======
+
+
+    var oReq = new XMLHttpRequest();
+    oReq.open('POST', 'http://localhost:8080/new');
+    oReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    oReq.send(`title=${card.title}&priority`);  //Look this up - syntax for XHR request
+>>>>>>> 3dc41f3ccbd0b6eee05289ca7159fc65a97a1273
   }
 
   render() {
@@ -70,8 +87,12 @@ class NewTask extends Component {
           <input type="text" placeholder="title" value={this.state.title} onChange={this.handleChangeTitle}  />
           <input type="text" placeholder="priority" value={this.state.priority} onChange={this.handleChangePriority} />
           <input type="text" placeholder="status" value={this.state.status} onChange={this.handleChangeStatus} />
+<<<<<<< HEAD
         <input type="submit" value="Add Task" />
 
+=======
+        <input type="submit" value="Add Task" onSubmit={this.handleSubmit} />
+>>>>>>> 3dc41f3ccbd0b6eee05289ca7159fc65a97a1273
       </form>
     )
   }
