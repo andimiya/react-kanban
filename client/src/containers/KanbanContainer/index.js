@@ -34,10 +34,11 @@ class KanbanContainer extends Component {
 
   render() {
     return (
-    <div>
+    <div className="board-container">
       <div className="new-task">
       <NewTask />
       </div>
+    <div className="to-do">
     {
     this.props.cards
     .filter(card => {
@@ -54,13 +55,14 @@ class KanbanContainer extends Component {
       )
     })
     }
+    </div>
+    <div className="in-progress">
     {
     this.props.cards
     .filter(card => {
       return card.status === 'In-Progress'
     })
     .map (card => {
-
       return (
         <KanbanCard
           key={card.id}
@@ -71,6 +73,8 @@ class KanbanContainer extends Component {
       )
     })
     }
+    </div>
+    <div className="done">
     {
     this.props.cards
     .filter(card => {
@@ -87,6 +91,7 @@ class KanbanContainer extends Component {
       )
     })
     }
+    </div>
     </div>
     )
   }
