@@ -1,22 +1,26 @@
+
 import { ADD_TASK } from '../actions';
 
-const initialState = cards();
-
-const newTaskReducer = (state = initialState, action) => {
-
-  let newState = state;
-
-  switch(action.type) {
-    case 'REMOVE_ITEM':
-      return state.delete(action.index);
-
-    case 'SET_ITEMS':
-      return cards(action.data);
-
-    default:
-      newState;
-  }
-  return newState;
+const initialState = {
+  cards: []
 };
 
-export default newTaskReducer;
+function cards(state = initialState, action) {
+  switch(action.type) {
+    case ADD_TASK:
+      return Object.assign({}, state, {
+        cards: [
+          ...state.cards,
+          {
+            title: action.title,
+            priority: action.priority,
+            status: action.status,
+          }
+        ]
+      })
+    default:
+      return state;
+  }
+}
+
+export default cards;

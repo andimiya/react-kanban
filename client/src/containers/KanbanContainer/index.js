@@ -33,6 +33,7 @@ class KanbanContainer extends Component {
 // action creators or action on props
 
   render() {
+    console.log(this.props.cards);
     return (
     <div>
     <div className="new-task">
