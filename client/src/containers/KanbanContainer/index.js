@@ -38,9 +38,9 @@ class KanbanContainer extends Component {
     <div className="new-task">
       <NewTask />
     </div>
-
     <div className="board-container">
     <div className="to-do">
+    <h1>To-Do</h1>
     {
     this.props.cards
     .filter(card => {
@@ -59,6 +59,7 @@ class KanbanContainer extends Component {
     }
     </div>
     <div className="in-progress">
+    <h1>In-Progress</h1>
     {
     this.props.cards
     .filter(card => {
@@ -77,6 +78,7 @@ class KanbanContainer extends Component {
     }
     </div>
     <div className="done">
+    <h1>Done</h1>
     {
     this.props.cards
     .filter(card => {
