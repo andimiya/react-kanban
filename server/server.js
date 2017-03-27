@@ -4,6 +4,7 @@ const app = express()
 const bp = require('body-parser')
 const db = require('./models')
 const { Card } = db
+const methodOverride = require('method-override')
 
 app.use(bp.urlencoded({ extended: true }))
 app.use(bp.json())
