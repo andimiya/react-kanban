@@ -10,6 +10,7 @@ class KanbanContainer extends Component {
   constructor(){
     super();
     this.onServerData = this.onServerData.bind(this);
+    this.editStatus = this.editStatus.bind(this);
   }
 
   onServerData(data) {
@@ -28,6 +29,11 @@ class KanbanContainer extends Component {
      oReq.addEventListener('load', this.onServerData);
      oReq.open('GET', 'http://localhost:8080/api');
      oReq.send();
+   }
+
+   editStatus(event){
+     event.preventDefault();
+     console.log('TEST CLICK');
    }
 
 // action creators or action on props
@@ -54,6 +60,7 @@ class KanbanContainer extends Component {
           title={card.title}
           priority={card.priority}
           status={card.status}
+          editStatus={this.editStatus}
         />
       )
     })
@@ -73,6 +80,7 @@ class KanbanContainer extends Component {
           title={card.title}
           priority={card.priority}
           status={card.status}
+          editStatus={this.editStatus}
         />
       )
     })
@@ -92,6 +100,7 @@ class KanbanContainer extends Component {
           title={card.title}
           priority={card.priority}
           status={card.status}
+          editStatus={this.editStatus}
         />
       )
     })

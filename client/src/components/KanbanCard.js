@@ -7,7 +7,7 @@ const KanbanCard = (props) => (
     <p>{ props.priority}</p>
     <p>{ props.status}</p>
 
-    // <button action="http://localhost:8080/update/{props.id}" method="put">Edit</button>
+    <button onClick={props.editStatus}>Edit</button>
   </div>
 )
 
