@@ -33,7 +33,7 @@ app.post('/new', (req, res) => {
     status: req.body.status
   })
     .then(card => {
-      res.send('success')
+      res.json(card)
     })
     .catch(() => {
       res.send('error')
@@ -50,7 +50,7 @@ app.put('/update/:id', (req, res) => {
       id: req.params.id }
     })
     .then(card => {
-      res.send('updated successfully')
+      res.json(card)
     })
     .catch(() => {
       res.send('error')
@@ -63,7 +63,7 @@ app.delete('/delete/:id', (req, res) => {
       id: req.params.id }
     })
     .then(card => {
-      res.send('successfully deleted')
+      res.json(card)
     })
     .catch(() => {
       res.send('error')
