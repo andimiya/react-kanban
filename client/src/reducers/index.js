@@ -1,5 +1,5 @@
 
-import { ADD_TASK } from '../actions';
+import { ADD_TASK, UPDATE_STATUS } from '../actions';
 
 const initialState = {
   cards: []
@@ -18,7 +18,17 @@ function cards(state = initialState, action) {
             status: action.status,
           }
         ]
-      })
+      });
+      case UPDATE_STATUS:
+        return Object.assign({}, state, {
+          cards: [
+            ...state.cards,
+            {
+              status: action.status,
+            }
+          ]
+        });
+
     default:
       return state;
   }

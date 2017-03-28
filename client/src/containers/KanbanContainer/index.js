@@ -4,7 +4,7 @@ import NewTask from '../../components/NewTask.js';
 import '../../index.css';
 
 import { connect } from 'react-redux';
-import addTask from '../../actions';
+import { addTask, updateStatus } from '../../actions';
 
 class KanbanContainer extends Component {
   constructor(){
@@ -24,7 +24,8 @@ class KanbanContainer extends Component {
 
   componentDidMount(){
     this.loadDatafromServer();
-   }
+  }
+
   loadDatafromServer(){
     var oReq = new XMLHttpRequest();
     oReq.addEventListener('load', this.onServerData);
@@ -32,22 +33,18 @@ class KanbanContainer extends Component {
     oReq.send();
   }
 
-  updateStatustoDone(data) {
-    console.log(data, 'data');
-    const parsedServerData = JSON.parse(data.currentTarget.response);
-    parsedServerData.forEach(card => {
-      console.log(card.id, 'card');
-      this.props.onAddTask(card.id, card.title, card.priority, "Done");
-    });
+  updateStatustoDone(card) {
+    this.props.onUpdateStatus(2, "In-Progress")
   };
 
-  editStatus(event){
+  editStatus(card){
     event.preventDefault();
-    var oReq = new XMLHttpRequest();
-    oReq.addEventListener('load', this.updateStatustoDone);
+    const oReq = new XMLHttpRequest();
     oReq.open('PUT', `http://localhost:8080/update/2`);
+    oReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     oReq.send();
-    console.log('TEST CLICK');
+    // console.log(card.status, 'card id');
+    this.loadDatafromServer();
   }
 
 // action creators or action on props
@@ -137,7 +134,11 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onAddTask: (id, title, priority, status) => {
       dispatch(addTask(id, title, priority, status));
+    },
+    onUpdateStatus: (id, status) => {
+      dispatch(updateStatus(status, id));
     }
+
   }
 };
 
