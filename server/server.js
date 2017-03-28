@@ -9,16 +9,17 @@ const methodOverride = require('method-override')
 app.use(bp.urlencoded({ extended: true }))
 app.use(bp.json())
 
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', "*")
-  res.header('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept")
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
   next()
 })
 
 app.get('/api', (req, res) => {
   Card.findAll()
   .then(cards => {
-    res.json( cards )
+    res.json(cards)
   })
   .catch(() => {
     res.send('error')
