@@ -9,6 +9,7 @@ class NewTask extends Component {
     super()
 
     this.state = {
+      id: "",
       title: "",
       priority: "",
       status:""
@@ -23,7 +24,7 @@ class NewTask extends Component {
   // trigger addTask, reset state to ""
   handleSubmit(event) {
     event.preventDefault();
-    this.props.onAddTask(this.state.title, this.state.priority, this.state.status);
+    this.props.onAddTask(this.state.id, this.state.title, this.state.priority, this.state.status);
     this.setState({
       title:"",
       priority:"",
@@ -76,8 +77,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddTask: (title, priority, status) => {
-      dispatch(addTask(title, priority, status));
+    onAddTask: (id, title, priority, status) => {
+      dispatch(addTask(id, title, priority, status));
     }
   }
 };

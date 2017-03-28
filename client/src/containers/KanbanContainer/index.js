@@ -11,30 +11,44 @@ class KanbanContainer extends Component {
     super();
     this.onServerData = this.onServerData.bind(this);
     this.editStatus = this.editStatus.bind(this);
+    this.updateStatustoDone = this.updateStatustoDone.bind(this);
   }
 
   onServerData(data) {
+    console.log(data, 'server data');
     const parsedServerData = JSON.parse(data.currentTarget.response);
     parsedServerData.forEach(card => {
-      this.props.onAddTask(card.title, card.priority, card.status);
+      this.props.onAddTask(card.id, card.title, card.priority, card.status);
     });
   };
 
   componentDidMount(){
     this.loadDatafromServer();
    }
+  loadDatafromServer(){
+    var oReq = new XMLHttpRequest();
+    oReq.addEventListener('load', this.onServerData);
+    oReq.open('GET', 'http://localhost:8080/api');
+    oReq.send();
+  }
 
-   loadDatafromServer(){
-     var oReq = new XMLHttpRequest();
-     oReq.addEventListener('load', this.onServerData);
-     oReq.open('GET', 'http://localhost:8080/api');
-     oReq.send();
-   }
+  updateStatustoDone(data) {
+    console.log(data, 'data');
+    const parsedServerData = JSON.parse(data.currentTarget.response);
+    parsedServerData.forEach(card => {
+      console.log(card.id, 'card');
+      this.props.onAddTask(card.id, card.title, card.priority, "Done");
+    });
+  };
 
-   editStatus(event){
-     event.preventDefault();
-     console.log('TEST CLICK');
-   }
+  editStatus(event){
+    event.preventDefault();
+    var oReq = new XMLHttpRequest();
+    oReq.addEventListener('load', this.updateStatustoDone);
+    oReq.open('PUT', `http://localhost:8080/update/2`);
+    oReq.send();
+    console.log('TEST CLICK');
+  }
 
 // action creators or action on props
 
@@ -121,8 +135,8 @@ const mapStateToProps = (state) => {
 // function that takes the dispatch property as an input
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddTask: (title, priority, status) => {
-      dispatch(addTask(title, priority, status));
+    onAddTask: (id, title, priority, status) => {
+      dispatch(addTask(id, title, priority, status));
     }
   }
 };
