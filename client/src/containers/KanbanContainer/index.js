@@ -3,34 +3,25 @@ import KanbanCard from '../../components/KanbanCard.js';
 import NewTask from '../../components/NewTask.js';
 import '../../index.css';
 
+import getAllCards from '../../lib/getAllCards';
+
 import { connect } from 'react-redux';
 import { addTask, updateStatus } from '../../actions';
 
 class KanbanContainer extends Component {
   constructor(){
     super();
-    this.onServerData = this.onServerData.bind(this);
     this.editStatus = this.editStatus.bind(this);
     this.updateStatustoDone = this.updateStatustoDone.bind(this);
   }
 
-  onServerData(data) {
-    console.log(data, 'server data');
-    const parsedServerData = JSON.parse(data.currentTarget.response);
-    parsedServerData.forEach(card => {
-      this.props.onAddTask(card.id, card.title, card.priority, card.status);
-    });
-  };
-
   componentDidMount(){
-    this.loadDatafromServer();
-  }
-
-  loadDatafromServer(){
-    var oReq = new XMLHttpRequest();
-    oReq.addEventListener('load', this.onServerData);
-    oReq.open('GET', 'http://localhost:8080/api');
-    oReq.send();
+    getAllCards()
+    .then(results => {
+      results.forEach(card => {
+        this.props.onAddTask(card.title, card.priority, card.status);
+      });
+    });
   }
 
   updateStatustoDone(card) {
@@ -43,7 +34,6 @@ class KanbanContainer extends Component {
     oReq.open('PUT', `http://localhost:8080/update/2`);
     oReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     oReq.send();
-    // console.log(card.status, 'card id');
     this.loadDatafromServer();
   }
 
@@ -67,7 +57,6 @@ class KanbanContainer extends Component {
     .map (card => {
       return (
         <KanbanCard
-          key={card.id}
           title={card.title}
           priority={card.priority}
           status={card.status}
@@ -87,7 +76,6 @@ class KanbanContainer extends Component {
     .map (card => {
       return (
         <KanbanCard
-          key={card.id}
           title={card.title}
           priority={card.priority}
           status={card.status}
@@ -107,7 +95,6 @@ class KanbanContainer extends Component {
     .map (card => {
       return (
         <KanbanCard
-          key={card.id}
           title={card.title}
           priority={card.priority}
           status={card.status}
@@ -132,11 +119,11 @@ const mapStateToProps = (state) => {
 // function that takes the dispatch property as an input
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddTask: (id, title, priority, status) => {
-      dispatch(addTask(id, title, priority, status));
+    onAddTask: (title, priority, status) => {
+      dispatch(addTask(title, priority, status));
     },
     onUpdateStatus: (id, status) => {
-      dispatch(updateStatus(status, id));
+      dispatch(updateStatus(id, status));
     }
 
   }
