@@ -5,15 +5,16 @@ import '../../index.css';
 
 import getAllCards from '../../lib/getAllCards';
 import newCard from '../../lib/newCard';
-import editStatus from '../../lib/editStatus';
+import updateStatus from '../../lib/editStatus';
 
 import { connect } from 'react-redux';
-import { addTask, updateStatus } from '../../actions';
+import { addCard, editStatus } from '../../actions';
 
 class KanbanContainer extends Component {
   constructor(){
     super();
-    this.editCard = this.editCard.bind(this);
+    this.addCard = this.addCard.bind(this);
+    this.editStatus = this.editStatus.bind(this);
   }
 
   componentDidMount(){
@@ -22,7 +23,7 @@ class KanbanContainer extends Component {
 
       results.forEach(card => {
         console.log(card, 'card');
-        this.props.onAddTask(card.title, card.priority, card.status);
+        this.props.onAddCard(card.title, card.priority, card.status);
       });
     });
   }
@@ -31,15 +32,15 @@ class KanbanContainer extends Component {
     newCard()
     .then(results => {
       results.forEach(card => {
-        this.props.onAddTask(card.title, card.priority, card.status);
+        this.props.onAddCard(card.title, card.priority, card.status);
       })
     })
   }
 
-  editCard(card) {
-    editStatus(card)
+  editStatus(card) {
+    updateStatus(card)
     .then(() => {
-      this.props.onUpdateStatus(card.id, card.status);
+      this.props.onEditStatus(card.id, card.status);
     });
   }
 
@@ -125,11 +126,11 @@ const mapStateToProps = (state) => {
 // function that takes the dispatch property as an input
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddTask: (title, priority, status) => {
-      dispatch(addTask(title, priority, status));
+    onAddCard: (title, priority, status) => {
+      dispatch(addCard(title, priority, status));
     },
-    onUpdateStatus: (id, status) => {
-      dispatch(updateStatus(id, status));
+    onEditStatus: (id, status) => {
+      dispatch(editStatus(id, status));
     }
 
   }

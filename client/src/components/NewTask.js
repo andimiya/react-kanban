@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import '../index.css';
 
 import { connect } from 'react-redux';
-import addTask from '../actions';
+import addCard from '../actions';
 
 class NewTask extends Component {
   constructor() {
@@ -23,7 +23,7 @@ class NewTask extends Component {
   // trigger addTask, reset state to ""
   handleSubmit(event) {
     event.preventDefault();
-    this.props.onAddTask(this.state.title, this.state.priority, this.state.status);
+    this.props.onAddCard(this.state.title, this.state.priority, this.state.status);
     this.setState({
       title:"",
       priority:"",
@@ -49,7 +49,7 @@ class NewTask extends Component {
     })
   }
 
-  addTask(card) {
+  addCard(card) {
     var oReq = new XMLHttpRequest();
     oReq.open('POST', 'http://localhost:8080/new');
     oReq.setRequestHeader("Content-Type", "application/json");
@@ -76,8 +76,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddTask: (title, priority, status) => {
-      dispatch(addTask(title, priority, status));
+    onAddCard: (title, priority, status) => {
+      dispatch(addCard(title, priority, status));
     }
   }
 };
