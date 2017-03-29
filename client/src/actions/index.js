@@ -1,7 +1,7 @@
 export const ADD_CARD = 'ADD_CARD';
 export const EDIT_STATUS = 'EDIT_STATUS';
 
-export const addCard = (title, priority, status) => {
+export const addCardAction = (title, priority, status) => {
   return {
     type: ADD_CARD,
     title,
@@ -10,7 +10,7 @@ export const addCard = (title, priority, status) => {
   }
 }
 
-export const editStatus = (id, status) => {
+export const editStatusAction = (id, status) => {
   return {
     type: EDIT_STATUS,
     id,

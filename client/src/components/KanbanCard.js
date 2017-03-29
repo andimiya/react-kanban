@@ -1,7 +1,6 @@
 import React from 'react'
 import '../index.css'
 
-
 const KanbanCard = (props) => (
 
   <div className="card">
