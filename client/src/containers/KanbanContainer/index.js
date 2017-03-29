@@ -56,12 +56,9 @@ class KanbanContainer extends Component {
       <NewTask />
     </div>
     <div className="board-container">
-    <div className="to-do">
-    <h1>To-Do</h1>
     <KanbanColumn
       cards={this.props.cards}
       />
-    </div>
     </div>
     </div>
     )

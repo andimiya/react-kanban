@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import KanbanCard from './KanbanCard.js'
 import { connect } from 'react-redux';
-
 import '../index.css'
 
 class Column extends Component {
   render() {
     return (
       <div>
+      <div className="to-do">
       <h1>To-Do</h1>
       { this.props.cards
         .filter (card => {
@@ -24,6 +24,8 @@ class Column extends Component {
           )
         })
       }
+      </div>
+      <div className="in-progress">
       <h1>In-Progress</h1>
       { this.props.cards
         .filter (card => {
@@ -40,6 +42,8 @@ class Column extends Component {
           )
         })
       }
+      </div>
+      <div className="done">
       <h1>Done</h1>
       { this.props.cards
         .filter (card => {
@@ -57,10 +61,10 @@ class Column extends Component {
         })
       }
     </div>
+    </div>
     )
   }
 }
-
 
 const mapStateToProps = (state) => {
   return {
