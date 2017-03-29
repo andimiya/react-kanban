@@ -6,7 +6,7 @@ import '../index.css'
 class Column extends Component {
   render() {
     return (
-      <div>
+      <div className="kanban-board">
       <div className="to-do">
       <h1>To-Do</h1>
       { this.props.cards

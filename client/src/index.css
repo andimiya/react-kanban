@@ -12,26 +12,34 @@ body {
   background-color: #222;
   height: 100px;
   padding: 20px;
-  width: 1200px;
   color: white;
 }
 
-.board-container {
+.kanban-board {
   border: 10px solid purple;
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+/*
+.to-do {
+  display: block;
+}
+
+.in-progress {
+  display: block;
 }
 
 .done {
-
-}
+  display: block;
+}*/
 
 .new-task {
   border: 10px solid blue;
+
 }
 
 .card {
   border: 1px solid purple;
-  width: 300px;
+  width: 250px;
 }
