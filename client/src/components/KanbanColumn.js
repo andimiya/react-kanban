@@ -7,8 +7,7 @@ class Column extends Component {
   constructor(props) {
     super(props);
 
-    console.log(this.props.editStatus, 'this props column');
-
+    console.log(this.props, 'this props column');
 
   }
 
@@ -28,7 +27,9 @@ class Column extends Component {
               title={card.title}
               priority={card.priority}
               status={card.status}
-              editStatus={this.props.editStatus}
+              moveToDo={this.props.moveToDo}
+              moveInProgress={this.props.moveInProgress}
+              moveDone={this.props.moveDone}
             />
           )
         })
@@ -47,7 +48,9 @@ class Column extends Component {
               title={card.title}
               priority={card.priority}
               status={card.status}
-              editStatus={this.props.editStatus}
+              moveToDo={this.props.moveToDo}
+              moveInProgress={this.props.moveInProgress}
+              moveDone={this.props.moveDone}
             />
           )
         })
@@ -66,7 +69,9 @@ class Column extends Component {
               title={card.title}
               priority={card.priority}
               status={card.status}
-              editStatus={this.props.editStatus}
+              moveToDo={this.props.moveToDo}
+              moveInProgress={this.props.moveInProgress}
+              moveDone={this.props.moveDone}
             />
           )
         })
@@ -82,7 +87,6 @@ const mapStateToProps = (state) => {
     cards: state.cards
   }
 };
-
 
 export default connect(
   mapStateToProps,

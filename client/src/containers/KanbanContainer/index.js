@@ -5,7 +5,6 @@ import '../../index.css';
 
 import getAllCards from '../../lib/getAllCards';
 import newCard from '../../lib/newCard';
-// import editStatus from '../../lib/editStatus';
 
 import { connect } from 'react-redux';
 import { addCardAction, editStatusAction } from '../../actions';
@@ -19,14 +18,17 @@ class KanbanContainer extends Component {
     };
 
     this.addCardAction = this.addCardAction.bind(this);
-    this.editStatusAction = this.editStatusAction.bind(this);
+    this.moveToDo = this.moveToDo.bind(this);
+    this.moveInProgress = this.moveInProgress.bind(this);
+    this.moveDone = this.moveDone.bind(this);
+
   }
 
   componentDidMount(){
     getAllCards()
     .then(results => {
       results.forEach(card => {
-        console.log(event.target.value);
+        // console.log(event.target.value);
         this.props.onAddCard(card.title, card.priority, card.status);
       });
     });
@@ -41,13 +43,32 @@ class KanbanContainer extends Component {
     })
   }
 
-  editStatusAction() {
-    // editStatus(card)
-    // .then(() => {
-      // this.props.onEditStatus(event.id, event.status);
-      console.log('Click');
-      console.log(event.target.value, 'event');
-    // });
+  moveToDo() {
+    //   return new Promise((resolve, reject) => {
+    //     const updateStatus = JSON.parse(this.response);
+    //     console.log(updateStatus, 'update status');
+    //
+    //     const http = new XMLHttpRequest();
+    //     http.open('PUT', `http://localhost:8080/update/2`);
+    //     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    //     http.send(updateStatus);
+    //   })
+    //
+    // .then(results => {
+    //   results.forEach(card => {
+    //     this.props.onEditStatus(card.id, card.status);
+    //   })
+    // })
+
+      console.log('Click To-Do');
+  };
+
+  moveInProgress(){
+    console.log('Click - InProgress');
+  }
+
+  moveDone(){
+    console.log('Click - Done');
   }
 
   render() {
@@ -59,7 +80,10 @@ class KanbanContainer extends Component {
     <div className="board-container">
     <KanbanColumn
       cards={this.props.cards}
-      editStatus={this.editStatusAction}
+      addCardAction={this.addCard}
+      moveToDo={this.props.moveToDo}
+      moveInProgress={this.props.moveInProgress}
+      moveDone={this.props.moveDone}
     />
     </div>
     </div>
