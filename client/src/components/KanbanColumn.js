@@ -4,6 +4,14 @@ import { connect } from 'react-redux';
 import '../index.css'
 
 class Column extends Component {
+  constructor(props) {
+    super(props);
+
+    console.log(this.props.editStatus, 'this props column');
+
+
+  }
+
   render() {
     return (
       <div className="kanban-board">
@@ -16,10 +24,11 @@ class Column extends Component {
         .map (card => {
           return (
             <KanbanCard
+              key={card.id}
               title={card.title}
               priority={card.priority}
               status={card.status}
-              editStatus={this.editStatusAction}
+              editStatus={this.props.editStatus}
             />
           )
         })
@@ -34,10 +43,11 @@ class Column extends Component {
         .map (card => {
           return (
             <KanbanCard
+              key={card.id}
               title={card.title}
               priority={card.priority}
               status={card.status}
-              editStatus={this.editStatusAction}
+              editStatus={this.props.editStatus}
             />
           )
         })
@@ -52,10 +62,11 @@ class Column extends Component {
         .map (card => {
           return (
             <KanbanCard
+              key={card.id}
               title={card.title}
               priority={card.priority}
               status={card.status}
-              editStatus={this.editStatusAction}
+              editStatus={this.props.editStatus}
             />
           )
         })

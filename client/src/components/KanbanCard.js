@@ -5,10 +5,12 @@ const KanbanCard = (props) => (
 
   <div className="card">
     <h2>{props.title}</h2>
-    <p>{ props.priority}</p>
-    <p>{ props.status}</p>
+    <p>{props.priority}</p>
+    <p>{props.status}</p>
 
-    <button onClick={props.editStatus} value={event.target}>Edit</button>
+    <button value="To-Do" onClick={props.moveToDo}>To-Do</button>
+    <button value="In-Progress" onClick={props.moveInProgress}>In-Progress</button>
+    <button value="Done" onClick={props.moveDone}>Done</button>
   </div>
 )
 

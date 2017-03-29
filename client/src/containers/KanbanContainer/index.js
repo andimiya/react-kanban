@@ -5,7 +5,7 @@ import '../../index.css';
 
 import getAllCards from '../../lib/getAllCards';
 import newCard from '../../lib/newCard';
-import updateStatus from '../../lib/editStatus';
+// import editStatus from '../../lib/editStatus';
 
 import { connect } from 'react-redux';
 import { addCardAction, editStatusAction } from '../../actions';
@@ -26,7 +26,7 @@ class KanbanContainer extends Component {
     getAllCards()
     .then(results => {
       results.forEach(card => {
-        console.log(card, 'card');
+        console.log(event.target.value);
         this.props.onAddCard(card.title, card.priority, card.status);
       });
     });
@@ -41,11 +41,13 @@ class KanbanContainer extends Component {
     })
   }
 
-  editStatusAction(card) {
-    updateStatus(card)
-    .then(() => {
-      this.props.onEditStatus(card.id, card.status);
-    });
+  editStatusAction() {
+    // editStatus(card)
+    // .then(() => {
+      // this.props.onEditStatus(event.id, event.status);
+      console.log('Click');
+      console.log(event.target.value, 'event');
+    // });
   }
 
   render() {
@@ -57,7 +59,8 @@ class KanbanContainer extends Component {
     <div className="board-container">
     <KanbanColumn
       cards={this.props.cards}
-      />
+      editStatus={this.editStatusAction}
+    />
     </div>
     </div>
     )
