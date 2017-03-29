@@ -4,6 +4,8 @@ import NewTask from '../../components/NewTask.js';
 import '../../index.css';
 
 import getAllCards from '../../lib/getAllCards';
+import newCard from '../../lib/newCard';
+import editStatus from '../../lib/editStatus';
 
 import { connect } from 'react-redux';
 import { addTask, updateStatus } from '../../actions';
@@ -11,30 +13,34 @@ import { addTask, updateStatus } from '../../actions';
 class KanbanContainer extends Component {
   constructor(){
     super();
-    this.editStatus = this.editStatus.bind(this);
-    this.updateStatustoDone = this.updateStatustoDone.bind(this);
+    this.editCard = this.editCard.bind(this);
   }
 
   componentDidMount(){
     getAllCards()
     .then(results => {
+
       results.forEach(card => {
+        console.log(card, 'card');
         this.props.onAddTask(card.title, card.priority, card.status);
       });
     });
   }
 
-  updateStatustoDone(card) {
-    this.props.onUpdateStatus(2, "In-Progress")
-  };
+  addCard(card) {
+    newCard()
+    .then(results => {
+      results.forEach(card => {
+        this.props.onAddTask(card.title, card.priority, card.status);
+      })
+    })
+  }
 
-  editStatus(card){
-    event.preventDefault();
-    const oReq = new XMLHttpRequest();
-    oReq.open('PUT', `http://localhost:8080/update/2`);
-    oReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    oReq.send();
-    this.loadDatafromServer();
+  editCard(card) {
+    editStatus(card)
+    .then(() => {
+      this.props.onUpdateStatus(card.id, card.status);
+    });
   }
 
 // action creators or action on props
