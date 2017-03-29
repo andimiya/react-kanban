@@ -10,6 +10,6 @@ module.exports = function newCard(card){
     http.addEventListener('load', reqListener);
     http.open('POST', 'http://localhost:8080/new');
     http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    http.send();
+    http.send(JSON.stringify(card));
   });
 };

@@ -49,7 +49,6 @@ class KanbanContainer extends Component {
   }
 
   render() {
-    console.log(this.props, 'this props');
     return (
     <div>
     <div className="new-task">
@@ -64,7 +63,6 @@ class KanbanContainer extends Component {
     )
   }
 }
-
 
 const mapStateToProps = (state) => {
   return {
@@ -81,7 +79,6 @@ const mapDispatchToProps = (dispatch) => {
     onEditStatus: (id, status) => {
       dispatch(editStatusAction(id, status));
     }
-
   }
 };
 

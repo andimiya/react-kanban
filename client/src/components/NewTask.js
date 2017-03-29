@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import '../index.css';
-import newCard from '../lib/newCard';
 import { connect } from 'react-redux';
-import addCardAction from '../actions';
+import { addCardAction } from '../actions';
 
 class NewTask extends Component {
   constructor() {
@@ -47,6 +46,13 @@ class NewTask extends Component {
     this.setState({
       status : event.target.value
     })
+  }
+
+  addCardAction(card){
+    var oReq = new XMLHttpRequest();
+    oReq.open('POST', 'http://localhost:8080/new');
+    oReq.setRequestHeader("Content-Type", "application/json");
+    oReq.send(JSON.stringify(card))
   }
 
   render() {
