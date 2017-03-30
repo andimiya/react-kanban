@@ -13,7 +13,7 @@ class KanbanCard extends Component {
   }
 
   moveEvent(event){
-    console.log(event.target.value, 'event value');
+    console.log(this.props.key, 'event value');
 
     event.preventDefault();
     this.moveToDone(this.props)
@@ -24,7 +24,7 @@ class KanbanCard extends Component {
 
   moveToDone(card){
     // console.log(this.card., 'card id');
-    console.log(this.props.key, 'key');
+    console.log(this.props.cards.id, 'key');
     console.log(this.props, 'this props');
     return new Promise(function(resolve, reject){
       function reqListener(){
@@ -42,6 +42,7 @@ class KanbanCard extends Component {
     return(
       <div>
       <div>
+        {this.props.key}
         {this.props.title}
         {this.props.priority}
         {this.props.status}

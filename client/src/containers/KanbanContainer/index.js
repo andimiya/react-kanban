@@ -13,7 +13,6 @@ class KanbanContainer extends Component {
     super(props);
 
     this.onServerData = this.onServerData.bind(this);
-    console.log(this.props);
   }
 
   onServerData(data) {
@@ -21,7 +20,7 @@ class KanbanContainer extends Component {
     const parsedServerData = JSON.parse(data.currentTarget.response);
     parsedServerData.forEach(card => {
       // Adds each card it gets from the server, to the STORE
-      this.props.onAddTask(card.title, card.priority, card.status);
+      this.props.onAddTask(card.id, card.title, card.priority, card.status);
     });
   };
 
@@ -39,7 +38,9 @@ class KanbanContainer extends Component {
    }
 
   render() {
+    console.log(this.props.cards, 'conatiner cards');
     return (
+
     <div>
     <div className="new-task">
       <NewTask />
@@ -70,8 +71,8 @@ const mapStateToProps = (state) => {
 // function that takes the dispatch property as an input
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddTask: (title, priority, status) => {
-      dispatch(addTask(title, priority, status));
+    onAddTask: (id, title, priority, status) => {
+      dispatch(addTask(id, title, priority, status));
     }
   }
 };

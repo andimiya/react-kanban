@@ -23,17 +23,20 @@ class NewTask extends Component {
     event.preventDefault();
 
     this.addTask({
+      id: this.state.id,
       title: this.state.title,
       priority: this.state.priority,
       status: this.state.status
     })
     .then((card) => {
       this.props.onAddTask(
+        card.id,
         card.title,
         card.priority,
         card.status)
     })
     this.setState({
+      id:"",
       title:"",
       priority:"",
       status:""
@@ -70,8 +73,6 @@ class NewTask extends Component {
     oReq.open('POST', 'http://localhost:8080/new');
     oReq.addEventListener('load', reqListener);
     oReq.setRequestHeader("Content-Type", "application/json");
-    // oReq.send(`title=${card.title}&priority=${card.priority}&status=${card.status}`);
-    // console.log(JSON.stringify(card), 'json card');
     oReq.send(JSON.stringify(card))
     })
   }
@@ -96,8 +97,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddTask: (title, priority, status) => {
-      dispatch(addTask(title, priority, status));
+    onAddTask: (id, title, priority, status) => {
+      dispatch(addTask(id, title, priority, status));
     }
   }
 };
