@@ -23,20 +23,22 @@ function cards(state = initialState, action) {
 
     case MOVE_TO_DONE:
 
-      let updatedCards = state.cards.map( card => {
-        if ( card.id !== action.id ) {
-          return card;
-        }
-        card.status = action.status;
-        return card;
-      });
+    let moveToDone = state.cards.map( card => {
+      if(card.id !== action.id){
+         return card;
+      }
+      card.id = action.id;
+      card.status = action.status;
 
-      return Object.assign({}, state, {
-        cards : [
-          ...updatedCards
-        ]
-      });
+      return card;
+     });
 
+         return Object.assign({},
+           state, {
+             cards: [
+             ...moveToDone
+            ]
+          });
 
     default:
       return state;

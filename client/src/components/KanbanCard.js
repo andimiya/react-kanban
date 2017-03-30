@@ -13,12 +13,13 @@ class KanbanCard extends Component {
   }
 
   moveEvent(event){
-    console.log(this.props, 'event value');
+
 
     event.preventDefault();
     this.moveToDone(this.props)
     .then((card) => {
-      this.props.onMoveToDone(card.id, card.status)
+      this.props.onMoveToDone(card.id, "Done")
+      console.log(event, 'event value');
     })
   }
 

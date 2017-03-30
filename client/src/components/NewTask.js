@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import addTask from '../actions';
+import { addTask } from '../actions';
 import '../index.css';
 
 class NewTask extends Component {
