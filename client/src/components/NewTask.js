@@ -1,18 +1,17 @@
 import React, {Component} from 'react';
-import '../index.css';
 import { connect } from 'react-redux';
-import { addCard } from '../actions';
+import addTask from '../actions';
+import '../index.css';
 
 class NewTask extends Component {
-  constructor() {
-    super()
-
+  constructor(props) {
+    super(props)
     this.state = {
       title: "",
       priority: "",
       status:""
     }
-
+    console.log(this.props, 'props');
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeTitle = this.handleChangeTitle.bind(this);
     this.handleChangePriority = this.handleChangePriority.bind(this);
@@ -22,7 +21,18 @@ class NewTask extends Component {
   // trigger addTask, reset state to ""
   handleSubmit(event) {
     event.preventDefault();
-    this.props.onAddCard(this.state.title, this.state.priority, this.state.status);
+
+    this.addTask({
+      title: this.state.title,
+      priority: this.state.priority,
+      status: this.state.status
+    })
+    .then((card) => {
+      this.props.onAddTask(
+        card.title,
+        card.priority,
+        card.status)
+    })
     this.setState({
       title:"",
       priority:"",
@@ -48,11 +58,22 @@ class NewTask extends Component {
     })
   }
 
-  addCardAction(card){
+  addTask(card) {
+    return new Promise(function(resolve, reject){
+    function reqListener(){
+      let results = JSON.parse(this.responseText);
+      resolve(results)
+    }
+
     var oReq = new XMLHttpRequest();
+    console.log(card, 'card');
     oReq.open('POST', 'http://localhost:8080/new');
+    oReq.addEventListener('load', reqListener);
     oReq.setRequestHeader("Content-Type", "application/json");
+    // oReq.send(`title=${card.title}&priority=${card.priority}&status=${card.status}`);
+    // console.log(JSON.stringify(card), 'json card');
     oReq.send(JSON.stringify(card))
+    })
   }
 
   render() {
@@ -75,8 +96,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddCard: (title, priority, status) => {
-      dispatch(addCard(title, priority, status));
+    onAddTask: (title, priority, status) => {
+      dispatch(addTask(title, priority, status));
     }
   }
 };

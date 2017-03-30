@@ -1,19 +1,12 @@
-export const ADD_CARD = 'ADD_CARD';
-export const EDIT_STATUS = 'EDIT_STATUS';
+export const ADD_TASK = 'ADD_TASK';
 
-export const addCard = (title, priority, status) => {
+export const addTask = (title, priority, status) => {
   return {
-    type: ADD_CARD,
+    type: ADD_TASK,
     title,
     priority,
     status
   }
 }
 
-export const editCard = (id, status) => {
-  return {
-    type: EDIT_STATUS,
-    id,
-    status
-  };
-}
+export default addTask;

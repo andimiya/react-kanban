@@ -1,60 +1,40 @@
 import React, {Component} from 'react';
-import KanbanColumn from '../../components/KanbanColumn.js';
+import KanbanCard from '../../components/KanbanCard.js';
 import NewTask from '../../components/NewTask.js';
 import '../../index.css';
 
-import getAllCards from '../../lib/getAllCards';
-import newCard from '../../lib/newCard';
-
 import { connect } from 'react-redux';
-import { addCard, editCard } from '../../actions';
+import addTask from '../../actions';
 
 class KanbanContainer extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
 
-    this.state = {
-      cards: []
-    };
-
-    console.log(this.addCard, 'this move todo');
-    this.addCard = this.addCard.bind(this);
-    this.moveToDo = this.moveToDo.bind(this);
-    this.moveInProgress = this.moveInProgress.bind(this);
-    this.moveDone = this.moveDone.bind(this);
+    this.onServerData = this.onServerData.bind(this);
+    console.log(this.props);
   }
 
-  componentDidMount(){
-    getAllCards()
-    .then(results => {
-      results.forEach(card => {
-        console.log(this.props.moveToDo, 'this props cards');
-        this.props.onAddCard(card.title, card.priority, card.status);
-      });
+  onServerData(data) {
+    // Parses the data received from the GET request
+    const parsedServerData = JSON.parse(data.currentTarget.response);
+    parsedServerData.forEach(card => {
+      // Adds each card it gets from the server, to the STORE
+      this.props.onAddTask(card.title, card.priority, card.status);
     });
-  }
-
-  addCard(card) {
-    newCard()
-    .then(results => {
-      results.forEach(card => {
-        this.props.onAddCard(card.title, card.priority, card.status);
-      })
-    })
-  }
-
-  moveToDo(card) {
-    event.preventDefault();
-    console.log('Click To-Do');
   };
 
-  moveInProgress(card){
-    console.log('Click - InProgress');
-  }
+    // Gets all the cards from the server to display on the page
+  componentDidMount(){
+    this.loadDatafromServer();
+   }
 
-  moveDone(card){
-    console.log('Click - Done');
-  }
+   loadDatafromServer(){
+     // Does the XMLHttpRequest request
+     var oReq = new XMLHttpRequest();
+     oReq.addEventListener('load', this.onServerData);
+     oReq.open('GET', 'http://localhost:8080/api');
+     oReq.send();
+   }
 
   render() {
     return (
@@ -63,13 +43,63 @@ class KanbanContainer extends Component {
       <NewTask />
     </div>
     <div className="board-container">
-    <KanbanColumn
-      cards={this.props.cards}
-      addCard={this.addCard}
-      moveToDo={this.props.moveToDo}
-      moveInProgress={this.props.moveInProgress}
-      moveDone={this.props.moveDone}
-    />
+    <div className="to-do">
+    <h1>To-Do</h1>
+    {
+    this.props.cards
+    .filter(card => {
+      return card.status === 'To-Do'
+    })
+    .map (card => {
+      return (
+        <KanbanCard
+          key={card.id}
+          title={card.title}
+          priority={card.priority}
+          status={card.status}
+        />
+      )
+    })
+    }
+    </div>
+    <div className="in-progress">
+    <h1>In-Progress</h1>
+    {
+    this.props.cards
+    .filter(card => {
+      return card.status === 'In-Progress'
+    })
+    .map (card => {
+      return (
+        <KanbanCard
+          key={card.id}
+          title={card.title}
+          priority={card.priority}
+          status={card.status}
+        />
+      )
+    })
+    }
+    </div>
+    <div className="done">
+    <h1>Done</h1>
+    {
+    this.props.cards
+    .filter(card => {
+      return card.status === 'Done'
+    })
+    .map (card => {
+      return (
+        <KanbanCard
+          key={card.id}
+          title={card.title}
+          priority={card.priority}
+          status={card.status}
+        />
+      )
+    })
+    }
+    </div>
     </div>
     </div>
     )
@@ -85,11 +115,8 @@ const mapStateToProps = (state) => {
 // function that takes the dispatch property as an input
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddCard: (title, priority, status) => {
-      dispatch(addCard(title, priority, status));
-    },
-    onEditCard: (id, status) => {
-      dispatch(editCard(id, status));
+    onAddTask: (title, priority, status) => {
+      dispatch(addTask(title, priority, status));
     }
   }
 };

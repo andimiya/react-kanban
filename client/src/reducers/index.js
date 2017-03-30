@@ -1,5 +1,5 @@
 
-import { ADD_CARD, EDIT_STATUS } from '../actions';
+import { ADD_TASK } from '../actions';
 
 const initialState = {
   cards: []
@@ -7,7 +7,7 @@ const initialState = {
 
 function cards(state = initialState, action) {
   switch(action.type) {
-    case ADD_CARD:
+    case ADD_TASK:
       return Object.assign({}, state, {
         cards: [
           ...state.cards,
@@ -17,23 +17,7 @@ function cards(state = initialState, action) {
             status: action.status,
           }
         ]
-      });
-      case EDIT_STATUS:
-
-      let editCard = state.cards.map( card => {
-        if ( card.id !== action.id ) {
-          return card;
-        }
-        card.status = action.status;
-        return card;
-      });
-
-      return Object.assign({}, state, {
-        cards : [
-          ...editCard
-        ]
-      });
-
+      })
     default:
       return state;
   }
