@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import KanbanCard from '../../components/KanbanCard.js';
+import ColumnToDo from '../../components/KanbanColumnToDo.js';
+import ColumnInProgress from '../../components/KanbanColumnInProgress.js';
+import ColumnDone from '../../components/KanbanColumnDone.js';
 import NewTask from '../../components/NewTask.js';
 import '../../index.css';
 
@@ -42,64 +44,17 @@ class KanbanContainer extends Component {
     <div className="new-task">
       <NewTask />
     </div>
+
     <div className="board-container">
-    <div className="to-do">
-    <h1>To-Do</h1>
-    {
-    this.props.cards
-    .filter(card => {
-      return card.status === 'To-Do'
-    })
-    .map (card => {
-      return (
-        <KanbanCard
-          key={card.id}
-          title={card.title}
-          priority={card.priority}
-          status={card.status}
-        />
-      )
-    })
-    }
-    </div>
-    <div className="in-progress">
-    <h1>In-Progress</h1>
-    {
-    this.props.cards
-    .filter(card => {
-      return card.status === 'In-Progress'
-    })
-    .map (card => {
-      return (
-        <KanbanCard
-          key={card.id}
-          title={card.title}
-          priority={card.priority}
-          status={card.status}
-        />
-      )
-    })
-    }
-    </div>
-    <div className="done">
-    <h1>Done</h1>
-    {
-    this.props.cards
-    .filter(card => {
-      return card.status === 'Done'
-    })
-    .map (card => {
-      return (
-        <KanbanCard
-          key={card.id}
-          title={card.title}
-          priority={card.priority}
-          status={card.status}
-        />
-      )
-    })
-    }
-    </div>
+      <ColumnToDo
+        cards={this.props.cards}
+      />
+      <ColumnInProgress
+        cards={this.props.cards}
+      />
+      <ColumnDone
+        cards={this.props.cards}
+      />
     </div>
     </div>
     )
