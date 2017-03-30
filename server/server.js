@@ -4,7 +4,6 @@ const app = express()
 const bp = require('body-parser')
 const db = require('./models')
 const { Card } = db
-const methodOverride = require('method-override')
 
 app.use(bp.urlencoded({ extended: true }))
 app.use(bp.json())
@@ -42,19 +41,18 @@ app.post('/new', (req, res) => {
 
 app.put('/update/:id', (req, res) => {
   Card.update({
-    title: req.body.title,
-    priority: req.body.priority,
     status: req.body.status
   },
     { where: {
-      id: req.params.id }
-    })
-    .then(card => {
-      res.json(card)
-    })
-    .catch(() => {
-      res.send('error')
-    })
+      id: req.params.id
+    }}
+  )
+  .then(card => {
+    res.send('Success')
+  })
+  .catch(() => {
+    res.send('error')
+  })
 })
 
 app.delete('/delete/:id', (req, res) => {
