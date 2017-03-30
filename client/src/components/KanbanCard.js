@@ -4,32 +4,35 @@ import { moveToDone } from '../actions';
 import '../index.css'
 
 class KanbanCard extends Component {
+
   constructor(props){
     super(props);
 
-    this.moveEvent = this.moveEvent.bind(this);
+    // this.moveEvent = this.moveEvent.bind(this);
     this.moveToDone = this.moveToDone.bind(this);
   }
 
   moveEvent(event){
+    console.log(event.target.value, 'event value');
+
     event.preventDefault();
     this.moveToDone(this.props)
     .then((card) => {
-      this.props.onMoveToDone(card.id, card.title, card.priority, card.status)
+      this.props.onMoveToDone(card.id, card.status)
     })
   }
 
   moveToDone(card){
-    console.log(event.target.value, 'event value');
-    console.log(card.id, 'card id');
-    console.log(this.props);
+    // console.log(this.card., 'card id');
+    console.log(this.props.key, 'key');
+    console.log(this.props, 'this props');
     return new Promise(function(resolve, reject){
       function reqListener(){
         resolve(card)
       }
 
       let http = new XMLHttpRequest();
-      http.open("PUT", `http://localhost:8080/update/43`);
+      http.open("PUT", `http://localhost:8080/update/${card.id}`);
       http.addEventListener("load", reqListener);
       http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       http.send(`status=Done`);

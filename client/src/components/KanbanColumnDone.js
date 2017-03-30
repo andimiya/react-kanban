@@ -11,6 +11,7 @@ class DoneColumn extends Component {
       { this.props.cards
         .filter (card => card.status === "Done")
         .map (card => {
+
           return (
             <KanbanCard
               key={card.id}
