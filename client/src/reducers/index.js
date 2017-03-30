@@ -1,5 +1,5 @@
 
-import { ADD_TASK } from '../actions';
+import { ADD_TASK, MOVE_TO_DONE } from '../actions';
 
 const initialState = {
   cards: []
@@ -19,6 +19,25 @@ function cards(state = initialState, action) {
           }
         ]
       })
+    break;
+
+    case MOVE_TO_DONE:
+
+      let updatedCards = state.cards.map( card => {
+        if ( card.id !== action.id ) {
+          return card;
+        }
+        card.status = action.status;
+        return card;
+      });
+
+      return Object.assign({}, state, {
+        cards : [
+          ...updatedCards
+        ]
+      });
+
+
     default:
       return state;
   }

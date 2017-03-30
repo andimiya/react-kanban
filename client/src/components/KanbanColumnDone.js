@@ -11,10 +11,10 @@ class DoneColumn extends Component {
       { this.props.cards
         .filter (card => card.status === "Done")
         .map (card => {
-
           return (
             <KanbanCard
               key={card.id}
+              id={card.id}
               title={card.title}
               priority={card.priority}
               status={card.status}

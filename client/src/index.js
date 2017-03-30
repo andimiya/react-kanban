@@ -10,7 +10,8 @@ import newTaskReducer from './reducers';
 
 let store = createStore(
   newTaskReducer,
-  applyMiddleware(thunk)
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  applyMiddleware(thunk),
 );
 
 ReactDOM.render(

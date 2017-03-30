@@ -11,7 +11,6 @@ class NewTask extends Component {
       priority: "",
       status:""
     }
-    console.log(this.props, 'props');
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeTitle = this.handleChangeTitle.bind(this);
     this.handleChangePriority = this.handleChangePriority.bind(this);
