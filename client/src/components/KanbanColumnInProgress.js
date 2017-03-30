@@ -1,13 +1,8 @@
 import React, {Component} from 'react';
 import KanbanCard from './KanbanCard.js'
-import { connect } from 'react-redux';
 import '../index.css'
 
 class InProgressColumn extends Component {
-  constructor(props) {
-    super(props);
-
-  }
 
   render() {
     return (

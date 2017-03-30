@@ -6,7 +6,7 @@ import NewTask from '../../components/NewTask.js';
 import '../../index.css';
 
 import { connect } from 'react-redux';
-import addTask from '../../actions';
+import { addTask } from '../../actions';
 
 class KanbanContainer extends Component {
   constructor(props){

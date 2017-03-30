@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import KanbanCard from './KanbanCard.js'
-import { connect } from 'react-redux';
 import '../index.css'
 
 class ToDoColumn extends Component {
