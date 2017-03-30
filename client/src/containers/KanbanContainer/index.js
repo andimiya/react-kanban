@@ -28,7 +28,7 @@ class KanbanContainer extends Component {
     getAllCards()
     .then(results => {
       results.forEach(card => {
-        // console.log(event.target.value);
+        console.log(this.props.moveToDo, 'this props cards');
         this.props.onAddCard(card.title, card.priority, card.status);
       });
     });
@@ -43,7 +43,7 @@ class KanbanContainer extends Component {
     })
   }
 
-  moveToDo() {
+  moveToDo(card) {
     //   return new Promise((resolve, reject) => {
     //     const updateStatus = JSON.parse(this.response);
     //     console.log(updateStatus, 'update status');
@@ -59,15 +59,14 @@ class KanbanContainer extends Component {
     //     this.props.onEditStatus(card.id, card.status);
     //   })
     // })
-
       console.log('Click To-Do');
   };
 
-  moveInProgress(){
+  moveInProgress(card){
     console.log('Click - InProgress');
   }
 
-  moveDone(){
+  moveDone(card){
     console.log('Click - Done');
   }
 

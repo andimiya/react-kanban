@@ -4,12 +4,6 @@ import { connect } from 'react-redux';
 import '../index.css'
 
 class Column extends Component {
-  constructor(props) {
-    super(props);
-
-    console.log(this.props, 'this props column');
-
-  }
 
   render() {
     return (
@@ -82,12 +76,4 @@ class Column extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    cards: state.cards
-  }
-};
-
-export default connect(
-  mapStateToProps,
-)(Column);
+export default Column;
