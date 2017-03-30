@@ -4,6 +4,14 @@ import { connect } from 'react-redux';
 import '../index.css'
 
 class Column extends Component {
+  constructor(props) {
+    super(props);
+
+
+
+    console.log(this.props.moveToDo, 'movetodo column');
+
+  }
 
   render() {
     return (
@@ -21,6 +29,7 @@ class Column extends Component {
               title={card.title}
               priority={card.priority}
               status={card.status}
+              onClick={this.props.moveToDo}
               moveToDo={this.props.moveToDo}
               moveInProgress={this.props.moveInProgress}
               moveDone={this.props.moveDone}
@@ -76,4 +85,12 @@ class Column extends Component {
   }
 }
 
-export default Column;
+const mapStateToProps = (state) => {
+  return {
+    cards: state.cards
+  }
+};
+
+export default connect(
+  mapStateToProps,
+)(Column);

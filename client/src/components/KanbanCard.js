@@ -8,7 +8,7 @@ const KanbanCard = (props) => (
     <p>{props.priority}</p>
     <p>{props.status}</p>
 
-    <button value="To-Do" onClick={props.moveToDo}>To-Do</button>
+    <button value="To-Do" onClick={props.onClick}>To-Do</button>
     <button value="In-Progress" onClick={props.moveInProgress}>In-Progress</button>
     <button value="Done" onClick={props.moveDone}>Done</button>
   </div>

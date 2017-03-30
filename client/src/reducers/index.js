@@ -19,14 +19,20 @@ function cards(state = initialState, action) {
         ]
       });
       case EDIT_STATUS:
-        return Object.assign({}, state, {
-          cards: [
-            ...state.cards,
-            {
-              status: action.status,
-            }
-          ]
-        });
+
+      let editCard = state.cards.map( card => {
+        if ( card.id !== action.id ) {
+          return card;
+        }
+        card.status = action.status;
+        return card;
+      });
+
+      return Object.assign({}, state, {
+        cards : [
+          ...editCard
+        ]
+      });
 
     default:
       return state;

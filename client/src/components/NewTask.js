@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import '../index.css';
 import { connect } from 'react-redux';
-import { addCardAction } from '../actions';
+import { addCard } from '../actions';
 
 class NewTask extends Component {
   constructor() {
@@ -76,7 +76,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onAddCard: (title, priority, status) => {
-      dispatch(addCardAction(title, priority, status));
+      dispatch(addCard(title, priority, status));
     }
   }
 };

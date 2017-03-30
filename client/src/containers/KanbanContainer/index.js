@@ -7,7 +7,7 @@ import getAllCards from '../../lib/getAllCards';
 import newCard from '../../lib/newCard';
 
 import { connect } from 'react-redux';
-import { addCardAction, editStatusAction } from '../../actions';
+import { addCard, editCard } from '../../actions';
 
 class KanbanContainer extends Component {
   constructor(){
@@ -17,11 +17,11 @@ class KanbanContainer extends Component {
       cards: []
     };
 
-    this.addCardAction = this.addCardAction.bind(this);
+    console.log(this.addCard, 'this move todo');
+    this.addCard = this.addCard.bind(this);
     this.moveToDo = this.moveToDo.bind(this);
     this.moveInProgress = this.moveInProgress.bind(this);
     this.moveDone = this.moveDone.bind(this);
-
   }
 
   componentDidMount(){
@@ -34,7 +34,7 @@ class KanbanContainer extends Component {
     });
   }
 
-  addCardAction(card) {
+  addCard(card) {
     newCard()
     .then(results => {
       results.forEach(card => {
@@ -44,22 +44,8 @@ class KanbanContainer extends Component {
   }
 
   moveToDo(card) {
-    //   return new Promise((resolve, reject) => {
-    //     const updateStatus = JSON.parse(this.response);
-    //     console.log(updateStatus, 'update status');
-    //
-    //     const http = new XMLHttpRequest();
-    //     http.open('PUT', `http://localhost:8080/update/2`);
-    //     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    //     http.send(updateStatus);
-    //   })
-    //
-    // .then(results => {
-    //   results.forEach(card => {
-    //     this.props.onEditStatus(card.id, card.status);
-    //   })
-    // })
-      console.log('Click To-Do');
+    event.preventDefault();
+    console.log('Click To-Do');
   };
 
   moveInProgress(card){
@@ -79,7 +65,7 @@ class KanbanContainer extends Component {
     <div className="board-container">
     <KanbanColumn
       cards={this.props.cards}
-      addCardAction={this.addCard}
+      addCard={this.addCard}
       moveToDo={this.props.moveToDo}
       moveInProgress={this.props.moveInProgress}
       moveDone={this.props.moveDone}
@@ -100,10 +86,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onAddCard: (title, priority, status) => {
-      dispatch(addCardAction(title, priority, status));
+      dispatch(addCard(title, priority, status));
     },
-    onEditStatus: (id, status) => {
-      dispatch(editStatusAction(id, status));
+    onEditCard: (id, status) => {
+      dispatch(editCard(id, status));
     }
   }
 };
