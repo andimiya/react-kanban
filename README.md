@@ -14,11 +14,12 @@
 6. Run `npm install`
 7. Run `sequelize db:migrate`
 8. Run `nodemon server.js`
-9. cd ..
-10. cd into react-kanban/client
-11. Run `npm run start`
-9. Load `localhost:3000` in your browser
-
+9. Leave that terminal window open and running, and open another terminal window
+10. In that new terminal window, cd into react-kanban/client
+11. Run `npm install`
+12. Run `npm run start`
+13. Load `localhost:3000` in your browser
+14. Create a new task!
 
 -------
 
