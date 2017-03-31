@@ -81,7 +81,14 @@ class NewTask extends Component {
       <form action="http://localhost:8080/new" method="post" onSubmit={this.handleSubmit}>
           <input type="text" placeholder="title" value={this.state.title} onChange={this.handleChangeTitle}  />
           <input type="text" placeholder="priority" value={this.state.priority} onChange={this.handleChangePriority} />
-          <input type="text" placeholder="status" value={this.state.status} onChange={this.handleChangeStatus} />
+          <select name="status" value={this.state.value} onChange={this.handleChangeStatus}>
+            <option value="Default">Select a Status</option>
+            <option value="To-Do">To-Do</option>
+            <option value="In-Progress">In-Progress</option>
+            <option value="Done">Done</option>
+          </select>
+
+
         <input type="submit" value="Add Task" />
       </form>
     )
