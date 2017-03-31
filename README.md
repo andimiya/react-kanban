@@ -1,9 +1,26 @@
 # React Kanban
-> A digital Kanban board made with React
+===============
 
-![kanban_guide_print_kpo_bleed_board2-1024x517](https://cloud.githubusercontent.com/assets/4650739/15059276/3bb2092e-12bd-11e6-9c12-d92747e77bc5.jpg)
+## Run On Your Local Machine
 
-> "The Kanban technique emerged in the late 1940s as Toyota’s reimagined approach to manufacturing and engineering. ... The system’s highly visual nature allowed teams to communicate more easily on what work needed to be done and when. It also standardized cues and refined processes, which helped to reduce waste and maximize value." - [via LeanKit.com](http://leankit.com/learn/kanban/kanban-board/)
+1. Set up a postgreSQL database with a database name, username, and password
+2. Clone this repository
+3. Edit the config_example.json in the config folder of this repo
+  - Enter your database username
+  - Enter your database name
+  - Enter your database password
+4. Rename the config_example.json file to config.json
+5. cd into react-kanban/server
+6. Run `npm install`
+7. Run `sequelize db:migrate`
+8. Run `nodemon server.js`
+9. cd ..
+10. cd into react-kanban/client
+11. Run `npm run start`
+9. Load `localhost:3000` in your browser
+
+
+-------
 
 ## Introduction
 Build a Digital Kanban board using:
