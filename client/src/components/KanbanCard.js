@@ -3,21 +3,22 @@ import '../index.css'
 
 function KanbanCard(props){
   return(
+    <div className="card">
     <div>
-    <div>
-      Title: {props.title}<br />
+      <h3>{props.title}</h3>
       Priority: {props.priority}<br />
       Status: {props.status}<br />
     </div>
-    <div>
-
-      {(props.status === 'To-Do' || props.status === 'In-Progress') &&
-        <button onClick={props.moveRight} value={props.status}> Right Arrow </button>
-      }
+    <div className="buttons">
 
       {(props.status === 'In-Progress' || props.status === 'Done') &&
-        <button onClick={props.moveLeft} value={props.status}> Left Arrow </button>
+        <button class="left-button" onClick={props.moveLeft} value={props.status}>&larr;</button>
       }
+
+      {(props.status === 'To-Do' || props.status === 'In-Progress') &&
+        <button class="right-button" onClick={props.moveRight} value={props.status}>&rarr;</button>
+      }
+
     </div>
 
     </div>

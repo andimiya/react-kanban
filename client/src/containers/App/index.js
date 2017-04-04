@@ -7,6 +7,7 @@ class App extends Component {
   render() {
     return (
       <div>
+      <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Questrial" />
       <Header />
       <KanbanContainer />
       </div>

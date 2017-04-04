@@ -4,42 +4,51 @@ body {
   font-family: sans-serif;
   display: flex;
   justify-content: center;
+  font-family: Questrial;
+  line-height: 1.5rem;
 }
 
 .Header {
   text-align: center;
   border: 10px solid green;
-  background-color: #222;
+  background-color: #4D525B;
   height: 100px;
   padding: 20px;
   color: white;
+  font-family: Questrial;
 }
 
-.kanban-board {
+h1 {
+  font-family: Questrial;
+}
+
+.column-container {
   border: 10px solid purple;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
-/*
-.to-do {
-  display: block;
+  text-align: center;
 }
 
-.in-progress {
-  display: block;
+.column {
+  border: 10px solid pink;
 }
-
-.done {
-  display: block;
-}*/
 
 .new-task {
   border: 10px solid blue;
-
 }
 
 .card {
   border: 1px solid purple;
   width: 250px;
+  margin-bottom: 10px;
+}
+
+.buttons {
+  padding: 15px;
+}
+
+.left-button {
+  float: left;
+
 }

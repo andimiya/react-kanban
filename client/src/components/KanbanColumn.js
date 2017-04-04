@@ -85,6 +85,7 @@ class Column extends Component {
 
   render() {
     return (
+      <div className="column-container">
       <div className="column">
       <h1>To-Do</h1>
       { this.props.cards
@@ -102,6 +103,8 @@ class Column extends Component {
           )
         })
       }
+      </div>
+      <div className="column">
       <h1>In-Progress</h1>
       { this.props.cards
         .filter (card => card.status === "In-Progress")
@@ -119,6 +122,8 @@ class Column extends Component {
           )
         })
       }
+      </div>
+      <div className="column">
       <h1>Done</h1>
       { this.props.cards
         .filter (card => card.status === "Done")
@@ -135,6 +140,7 @@ class Column extends Component {
           )
         })
       }
+    </div>
     </div>
     )
   }
