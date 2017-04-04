@@ -29,18 +29,22 @@ h1 {
   /*border: 10px solid purple;*/
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   text-align: center;
+}
+
+.column {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  width: 300px;
 }
 
 .divider {
   /*border: 10px solid pink;*/
   border-left: 1px solid #4D525B;
   margin: 15px;
-}
-
-.new-task {
-  /*border: 10px solid blue;*/
 }
 
 .In-Progress {
@@ -53,6 +57,7 @@ h1 {
 
 .To-Do {
   width: 250px;
+  height: 150px;
   margin-bottom: 10px;
   border: 2px solid #428F89;
   background-color: #b3d2cf;
