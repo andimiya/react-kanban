@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { moveToDone, moveToDo, moveToInProgress } from '../actions';
+import { changeStatus } from '../actions';
 import '../index.css'
 
 class KanbanCard extends Component {
@@ -9,26 +9,22 @@ class KanbanCard extends Component {
     super(props);
 
     this.moveEvent = this.moveEvent.bind(this);
-    this.moveEventToDo = this.moveEventToDo.bind(this);
-    this.moveEventInProgress = this.moveEventInProgress.bind(this);
-    this.moveToDone = this.moveToDone.bind(this);
-    this.moveToDo = this.moveToDo.bind(this);
-    this.moveToInProgress = this.moveToInProgress.bind(this);
+    this.changeStatus = this.changeStatus.bind(this);
+
   }
 
   moveEvent(event){
-
+console.log(this.props.status, 'prop');
     event.preventDefault();
-    this.moveToDone(this.props)
-    .then((card) => {
-      this.props.onMoveToDone(card.id, "Done")
-      console.log(event, 'event value');
-    })
+    // this.changeStatus(this.props)
+    // .then((card) => {
+    //   this.props.changeStatus(card.id, "Done")
+      console.log(event.target, 'move event');
+    // })
   }
 
-  moveToDone(card){
-
-    console.log(event.target, 'event target');
+  changeStatus(card){
+    console.log(event.target.value, 'change status event');
     return new Promise(function(resolve, reject){
       function reqListener(){
         resolve(card)
@@ -38,58 +34,7 @@ class KanbanCard extends Component {
       http.open("PUT", `http://localhost:8080/update/${card.id}`);
       http.addEventListener("load", reqListener);
       http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      http.send(`status=Done`);
-    })
-  }
-
-  moveEventToDo(event){
-
-    event.preventDefault();
-    this.moveToDo(this.props)
-    .then((card) => {
-      this.props.onMoveToDo(card.id, "To-Do")
-      console.log(event, 'event value');
-    })
-  }
-
-  moveToDo(card){
-
-    console.log(event.target, 'event target');
-    return new Promise(function(resolve, reject){
-      function reqListener(){
-        resolve(card)
-      }
-
-      let http = new XMLHttpRequest();
-      http.open("PUT", `http://localhost:8080/update/${card.id}`);
-      http.addEventListener("load", reqListener);
-      http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      http.send(`status=To-Do`);
-    })
-  }
-
-  moveEventInProgress(event){
-
-    event.preventDefault();
-    this.moveToInProgress(this.props)
-    .then((card) => {
-      this.props.onMoveToInProgress(card.id, "In-Progress")
-      console.log(event, 'event value');
-    })
-  }
-
-  moveToInProgress(card){
-    console.log(event.target, 'event target');
-    return new Promise(function(resolve, reject){
-      function reqListener(){
-        resolve(card)
-      }
-
-      let http = new XMLHttpRequest();
-      http.open("PUT", `http://localhost:8080/update/${card.id}`);
-      http.addEventListener("load", reqListener);
-      http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      http.send(`status=In-Progress`);
+      http.send(`status=${event.target.value}`);
     })
   }
 
@@ -102,10 +47,10 @@ class KanbanCard extends Component {
         Status: {this.props.status}<br />
       </div>
       <div>
-      <button onClick={this.moveEventToDo} value={"To-Do"}>To-Do</button>
+      <button onClick={this.moveEvent} value="To-Do">To-Do</button>
       </div>
       <div>
-      <button onClick={this.moveEventInProgress} value={"In-Progress"}>In-Progress</button>
+      <button onClick={this.moveEvent} value={"In-Progress"}>In-Progress</button>
       </div>
       <div>
       <button onClick={this.moveEvent} value={"Done"}>Done</button>
@@ -123,15 +68,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onMoveToDo: (id, status) => {
-      dispatch(moveToDo(id, status));
-    },
-    onMoveToInProgress: (id, status) => {
-      dispatch(moveToInProgress(id, status));
-    },
-    onMoveToDone: (id, status) => {
-      dispatch(moveToDone(id, status));
-    },
+    onChangeStatus: (id, status) => {
+      dispatch(changeStatus(id, status));
+    }
   }
 };
 

@@ -1,7 +1,5 @@
 export const ADD_TASK = 'ADD_TASK';
-export const MOVE_TO_DONE = 'MOVE_TO_DONE';
-export const MOVE_TO_DO = 'MOVE_TO_DO';
-export const MOVE_TO_IN_PROGRESS = 'MOVE_TO_IN_PROGRESS';
+export const CHANGE_STATUS = 'CHANGE_STATUS';
 
 export function addTask(id, title, priority, status){
   return {
@@ -13,25 +11,9 @@ export function addTask(id, title, priority, status){
   }
 }
 
-export function moveToDone(id, status){
+export function changeStatus(id, status){
   return {
-    type: MOVE_TO_DONE,
-    id,
-    status
-  }
-}
-
-export function moveToDo(id, status){
-  return {
-    type: MOVE_TO_DO,
-    id,
-    status
-  }
-}
-
-export function moveToInProgress(id, status){
-  return {
-    type: MOVE_TO_IN_PROGRESS,
+    type: CHANGE_STATUS,
     id,
     status
   }

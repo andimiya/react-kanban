@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import ColumnToDo from '../../components/KanbanColumnToDo.js';
-import ColumnInProgress from '../../components/KanbanColumnInProgress.js';
-import ColumnDone from '../../components/KanbanColumnDone.js';
+import Column from '../../components/KanbanColumn.js';
 import NewTask from '../../components/NewTask.js';
 import '../../index.css';
 
@@ -46,13 +44,7 @@ class KanbanContainer extends Component {
     </div>
 
     <div className="board-container">
-      <ColumnToDo
-        cards={this.props.cards}
-      />
-      <ColumnInProgress
-        cards={this.props.cards}
-      />
-      <ColumnDone
+      <Column
         cards={this.props.cards}
       />
     </div>
