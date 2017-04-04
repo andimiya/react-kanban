@@ -79,8 +79,8 @@ class NewTask extends Component {
   render() {
     return (
       <form className="new-task-form" action="http://localhost:8080/new" method="post" onSubmit={this.handleSubmit}>
-        <input type="text" placeholder="title" value={this.state.title} onChange={this.handleChangeTitle}  />
-        <input type="text" placeholder="priority" value={this.state.priority} onChange={this.handleChangePriority} />
+        <input type="text" placeholder="Task" value={this.state.title} onChange={this.handleChangeTitle}  />
+        <input type="text" placeholder="Priority" value={this.state.priority} onChange={this.handleChangePriority} />
         <div className="dropdown">
           <select name="status" value={this.state.value} onChange={this.handleChangeStatus}>
             <option value="Default">Select a Status</option>
