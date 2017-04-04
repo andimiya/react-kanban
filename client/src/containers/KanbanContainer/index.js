@@ -36,7 +36,6 @@ class KanbanContainer extends Component {
    }
 
   render() {
-    console.log(this.props.cards, 'column props');
     return (
 
     <div>

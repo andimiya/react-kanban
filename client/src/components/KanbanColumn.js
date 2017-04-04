@@ -17,18 +17,19 @@ class Column extends Component {
   }
 
   moveRight(event){
-    if (event.target.value === 'To-Do'){
-      event.preventDefault();
-      console.log(this.props.cards, 'this props cards');
+    console.log(this.props);
+    //
+    // if (this.props.status === 'To-Do'){
+    //   console.log(event.target.value, 'this props cards');
       this.moveToDone(this.props)
       .then((card) =>{
-        console.log(card.id, 'id');
-        this.props.onChangeStatus(card.id, "In-Progress")
+        console.log(card.status, 'id');
+        // this.props.onChangeStatus(card.id, "In-Progress")
       })
-    }
-    else if (event.target.value === 'In-Progress'){
-      this.moveToDone(this.props.cards)
-    }
+    // }
+    // else if (event.target.value === 'In-Progress'){
+    //   this.moveToDone(this.props.cards)
+    // }
   }
 
   moveLeft(event){

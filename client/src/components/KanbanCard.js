@@ -1,8 +1,8 @@
 import React from 'react'
 import '../index.css'
 
-function KanbanCard(props){
-  return(
+const KanbanCard = (props) => {
+  return (
     <div className={props.status}>
     <div>
       <h3>{props.title}</h3>
@@ -12,15 +12,13 @@ function KanbanCard(props){
     <div className="buttons">
 
       {(props.status === 'In-Progress' || props.status === 'Done') &&
-        <button className="left-button" onClick={props.moveLeft} value={props.status}>&larr;</button>
+        <button className="left-button" onClick={props.moveLeft} value={props.id}>&larr;</button>
       }
 
       {(props.status === 'To-Do' || props.status === 'In-Progress') &&
-        <button className="right-button" onClick={props.moveRight} value={props.status}>&rarr;</button>
+        <button className="right-button" onClick={props.moveRight} value={props.id}>&rarr;</button>
       }
-
     </div>
-
     </div>
   )
 }
