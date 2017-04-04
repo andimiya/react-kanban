@@ -12,11 +12,11 @@ function KanbanCard(props){
     <div className="buttons">
 
       {(props.status === 'In-Progress' || props.status === 'Done') &&
-        <button class="left-button" onClick={props.moveLeft} value={props.status}>&larr;</button>
+        <button className="left-button" onClick={props.moveLeft} value={props.status}>&larr;</button>
       }
 
       {(props.status === 'To-Do' || props.status === 'In-Progress') &&
-        <button class="right-button" onClick={props.moveRight} value={props.status}>&rarr;</button>
+        <button className="right-button" onClick={props.moveRight} value={props.status}>&rarr;</button>
       }
 
     </div>

@@ -12,7 +12,7 @@ body {
 
 .Header {
   text-align: center;
-  border: 10px solid green;
+  /*border: 10px solid green;*/
   background-color: #4D525B;
   height: 100px;
   padding: 20px;
@@ -22,35 +22,34 @@ body {
 
 h1 {
   font-family: Questrial;
+  font-size: 1.5rem;
 }
 
 .column-container {
-  border: 10px solid purple;
+  /*border: 10px solid purple;*/
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
   text-align: center;
 }
 
-.column {
-  border: 10px solid pink;
+.divider {
+  /*border: 10px solid pink;*/
+  border-left: 1px solid #4D525B;
+  margin: 15px;
 }
 
 .new-task {
-  border: 10px solid blue;
+  /*border: 10px solid blue;*/
 }
 
 .card {
-  border: 1px solid purple;
+  /*border: 1px solid purple;*/
   width: 250px;
   margin-bottom: 10px;
+  border: 1px solid #4D525B;
 }
 
 .buttons {
   padding: 15px;
-}
-
-.left-button {
-  float: left;
-
 }

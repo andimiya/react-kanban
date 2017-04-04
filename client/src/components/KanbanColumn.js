@@ -104,6 +104,7 @@ class Column extends Component {
         })
       }
       </div>
+      <div className="divider"></div>
       <div className="column">
       <h1>In-Progress</h1>
       { this.props.cards
@@ -123,6 +124,7 @@ class Column extends Component {
         })
       }
       </div>
+      <div className="divider"></div>
       <div className="column">
       <h1>Done</h1>
       { this.props.cards
