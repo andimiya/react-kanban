@@ -3,7 +3,7 @@ import '../index.css'
 
 function KanbanCard(props){
   return(
-    <div className="card">
+    <div className={props.status}>
     <div>
       <h3>{props.title}</h3>
       Priority: {props.priority}<br />

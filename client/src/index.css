@@ -14,7 +14,7 @@ body {
   text-align: center;
   /*border: 10px solid green;*/
   background-color: #4D525B;
-  height: 100px;
+  height: 80px;
   padding: 20px;
   color: white;
   font-family: Questrial;
@@ -43,11 +43,26 @@ h1 {
   /*border: 10px solid blue;*/
 }
 
-.card {
+.In-Progress {
   /*border: 1px solid purple;*/
   width: 250px;
   margin-bottom: 10px;
-  border: 1px solid #4D525B;
+  border: 2px solid #97292C;
+  background-color: #dfbebf;
+}
+
+.To-Do {
+  width: 250px;
+  margin-bottom: 10px;
+  border: 2px solid #428F89;
+  background-color: #b3d2cf;
+}
+
+.Done {
+  width: 250px;
+  margin-bottom: 10px;
+  border: 2px solid #4b4096;
+  background-color: #ccbacf;
 }
 
 .buttons {

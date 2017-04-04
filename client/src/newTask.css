@@ -14,7 +14,7 @@ input[type=text] {
 }
 
 input[type=submit] {
-  background-color: gray;
+  background-color: black;
   border: none;
   color: white;
   padding: 12px 20px;
@@ -25,7 +25,7 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-  background-color: black;
+  background-color: #54375a;
   font-family: Questrial;
 }
 

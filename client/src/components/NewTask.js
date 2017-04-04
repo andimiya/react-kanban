@@ -83,7 +83,7 @@ class NewTask extends Component {
         <input type="text" placeholder="Priority" value={this.state.priority} onChange={this.handleChangePriority} />
         <div className="dropdown">
           <select name="status" value={this.state.value} onChange={this.handleChangeStatus}>
-            <option value="Default">Select a Status</option>
+            <option value="" enabled="false">Select a Status</option>
             <option value="To-Do">To-Do</option>
             <option value="In-Progress">In-Progress</option>
             <option value="Done">Done</option>
