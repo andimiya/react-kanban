@@ -17,67 +17,65 @@ class Column extends Component {
   }
 
   moveRight(event){
-    console.log(this.props);
-    //
-    // if (this.props.status === 'To-Do'){
-    //   console.log(event.target.value, 'this props cards');
-      this.moveToDone(this.props)
-      .then((card) =>{
-        console.log(card.status, 'id');
-        // this.props.onChangeStatus(card.id, "In-Progress")
-      })
-    // }
-    // else if (event.target.value === 'In-Progress'){
-    //   this.moveToDone(this.props.cards)
-    // }
+    let cardId = event.target.value;
+    let cardStatus = event.target.name;
+    if (cardStatus === 'In-Progress'){
+      this.moveToDone(cardId)
+    }
+    else if (cardStatus === 'To-Do'){
+      this.moveToInProgress(cardId)
+    }
   }
 
   moveLeft(event){
-    if (event.target.value === 'In-Progress'){
-      this.moveToDo()
+    let cardId = event.target.value;
+    let cardStatus = event.target.name;
+    if (cardStatus === 'In-Progress'){
+      this.moveToInProgress(cardId)
     }
-    else if (event.target.value === 'Done'){
-      this.moveToInProgress(this.props.cards)
+    else if (cardStatus === 'To-Do'){
+      this.moveToDo(cardId)
     }
   }
 
-  moveToDo(card){
+  moveToDo(id){
+    console.log(id);
     return new Promise(function(resolve, reject){
       function reqListener(){
-        resolve(card)
+        resolve()
       }
 
       let http = new XMLHttpRequest();
-      http.open("PUT", `http://localhost:8080/update/${card.id}`);
+      http.open("PUT", `http://localhost:8080/update/${id}`);
       http.addEventListener("load", reqListener);
       http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       http.send(`status=To-Do`);
     })
   }
 
-  moveToInProgress(card){
+  moveToInProgress(id){
     console.log('test');
     return new Promise(function(resolve, reject){
       function reqListener(){
-        resolve(card)
+        resolve()
       }
 
       let http = new XMLHttpRequest();
-      http.open("PUT", `http://localhost:8080/update/${card.id}`);
+      http.open("PUT", `http://localhost:8080/update/${id}`);
       http.addEventListener("load", reqListener);
       http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       http.send(`status=In-Progress`);
     })
   }
 
-  moveToDone(card){
+  moveToDone(id){
     return new Promise(function(resolve, reject){
       function reqListener(){
-        resolve(card)
+        resolve()
       }
 
       let http = new XMLHttpRequest();
-      http.open("PUT", `http://localhost:8080/update/${card.id}`);
+      http.open("PUT", `http://localhost:8080/update/${id}`);
       http.addEventListener("load", reqListener);
       http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       http.send(`status=Done`);
@@ -100,6 +98,7 @@ class Column extends Component {
               priority={card.priority}
               status={card.status}
               moveRight={this.moveRight}
+              moveLeft={this.moveLeft}
             />
           )
         })
@@ -138,6 +137,7 @@ class Column extends Component {
               title={card.title}
               priority={card.priority}
               status={card.status}
+              moveRight={this.moveRight}
               moveLeft={this.moveLeft}
             />
           )

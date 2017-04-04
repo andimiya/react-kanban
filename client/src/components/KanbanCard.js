@@ -12,11 +12,20 @@ const KanbanCard = (props) => {
     <div className="buttons">
 
       {(props.status === 'In-Progress' || props.status === 'Done') &&
-        <button className="left-button" onClick={props.moveLeft} value={props.id}>&larr;</button>
+        <button
+          className="left-button"
+          onClick={props.moveLeft}
+          value={props.id}
+          name={props.status}>&larr;
+        </button>
       }
 
       {(props.status === 'To-Do' || props.status === 'In-Progress') &&
-        <button className="right-button" onClick={props.moveRight} value={props.id}>&rarr;</button>
+        <button
+          className="right-button" onClick={props.moveRight}
+          value={props.id}
+          name={props.status}>&rarr;
+        </button>
       }
     </div>
     </div>
