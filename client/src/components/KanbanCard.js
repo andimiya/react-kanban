@@ -3,14 +3,14 @@ import '../index.css'
 
 const KanbanCard = (props) => {
   return (
+  <div className="card-container">
     <div className={props.status}>
     <div>
       <h3>{props.title}</h3>
       Priority: {props.priority}<br />
       Status: {props.status}<br />
     </div>
-    <div className="buttons">
-
+    <div className="left-button">
       {(props.status === 'In-Progress' || props.status === 'Done') &&
         <button
           className="left-button"
@@ -19,6 +19,8 @@ const KanbanCard = (props) => {
           name={props.status}>&larr;
         </button>
       }
+    </div>
+    <div className="right-button">
 
       {(props.status === 'To-Do' || props.status === 'In-Progress') &&
         <button
@@ -27,6 +29,13 @@ const KanbanCard = (props) => {
           name={props.status}>&rarr;
         </button>
       }
+    </div>
+    <div className="delete-button">
+      <button
+        onClick={props.delete}
+        value={props.id}>Delete
+      </button>
+    </div>
     </div>
     </div>
   )

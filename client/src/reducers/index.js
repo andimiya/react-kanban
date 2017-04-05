@@ -1,5 +1,5 @@
 
-import { ADD_TASK, CHANGE_STATUS } from '../actions';
+import { ADD_TASK, CHANGE_STATUS, DELETE_CARD } from '../actions';
 
 const initialState = {
   cards: []
@@ -37,9 +37,19 @@ function cards(state = initialState, action) {
          ...changeStatus
         ]
       });
+
+    case DELETE_CARD:
+      return Object.assign({}, state, {
+        cards:
+          state.cards.filter(cards =>{
+            return cards.id !== action.id;
+          })
+      })
+
     default:
       return state;
   }
+
 }
 
 export default cards;

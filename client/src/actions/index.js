@@ -1,5 +1,6 @@
 export const ADD_TASK = 'ADD_TASK';
 export const CHANGE_STATUS = 'CHANGE_STATUS';
+export const DELETE_CARD = 'DELETE_CARD';
 // cost PORT
 
 export function addTask(id, title, priority, status){
@@ -36,5 +37,12 @@ export function changeStatus(id, status){
     type: CHANGE_STATUS,
     id,
     status
+  }
+}
+
+export function deleteCard(id){
+  return {
+    type: DELETE_CARD,
+    id
   }
 }
