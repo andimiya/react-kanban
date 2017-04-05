@@ -16,7 +16,7 @@ class Column extends Component {
 
   moveRight(event){
     console.log('move right');
-    let cardId = event.target.value;
+    let cardId = parseInt(event.target.value);
     let cardStatus = event.target.name;
     if (cardStatus === 'In-Progress'){
       this.moveStatus(cardId, 'Done')
@@ -27,26 +27,30 @@ class Column extends Component {
   }
 
   moveLeft(event){
-    let cardId = event.target.value;
+    let cardId = parseInt(event.target.value);
     let cardStatus = event.target.name;
     if (cardStatus === 'In-Progress'){
-      this.moveStatus(cardId, cardStatus)
+      this.moveStatus(cardId, 'To-Do')
     }
     else if (cardStatus === 'Done'){
-      this.moveStatus(cardId, cardStatus)
+      this.moveStatus(cardId, 'In-Progress')
+
     }
   }
 
   moveStatus(id, status){
-    return new Promise(function(resolve, reject){
-      function reqListener(){
+    // let self = this;
+    return new Promise((resolve, reject) => {
+      let reqListener = (event) => {
+        this.props.onChangeStatus(id, status);
         resolve()
       }
+
       console.log(id, 'card id');
       console.log(status, 'card status');
-      console.log(this.onChangeStatus, 'props new');
-      let http = new XMLHttpRequest();
 
+
+      let http = new XMLHttpRequest();
       http.open("PUT", `http://localhost:8080/update/${id}`);
       http.addEventListener("load", reqListener);
       http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

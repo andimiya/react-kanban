@@ -18,18 +18,17 @@ function cards(state = initialState, action) {
             status: action.status,
           }
         ]
-      })
+      });
 
     case CHANGE_STATUS:
 
     let changeStatus = state.cards.map( card => {
+      console.log(card.id, action.id, card.id !== action.id, 'action');
       if(card.id !== action.id){
          return card;
       }
-      card.id = action.id;
       card.status = action.status;
-
-      return card;
+        return card;
      });
 
      return Object.assign({},
@@ -37,7 +36,7 @@ function cards(state = initialState, action) {
          cards: [
          ...changeStatus
         ]
-      })
+      });
     default:
       return state;
   }
