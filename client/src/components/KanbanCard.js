@@ -31,10 +31,11 @@ const KanbanCard = (props) => {
       }
     </div>
     <div className="delete-button">
-      <button
+      <a href="#"
         onClick={props.delete}
-        value={props.id}>Delete
-      </button>
+        value={props.id}>
+        <img src={"https://s3.amazonaws.com/web-ready-andrea/trash.png"} />
+      </a>
     </div>
     </div>
     </div>
